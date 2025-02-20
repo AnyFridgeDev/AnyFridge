@@ -10,7 +10,8 @@
 
 ## Project Overview
 
-This is the development repository for AnyFridge. AnyFridge is a compact device that lets you give your regular fridge smart fridge features without the need to buy an entirely new fridge. It is a UPC barcode scanner that mounts magnetically to your fridge to make keeping track of your store purchases extremely convenient. Each item you scan will be cataloged in a web app that lets you view and manage your inventory levels.
+This is the development repository for AnyFridge, a compact device that brings smart features to any refrigerator. No need to buy the latest expensive model!
+It is a WiFi-connected UPC barcode scanner that mounts magnetically to your fridge to make keeping track of your store purchases extremely convenient. Each item you scan will be cataloged in a web app that lets you view and manage your inventory levels.
 
 ## Organization
 

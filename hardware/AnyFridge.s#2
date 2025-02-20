@@ -1390,28 +1390,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <label x="81.28" y="71.12" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="TX0" class="0">
-<segment>
-<pinref part="SEN-1" gate="G$1" pin="TX"/>
-<wire x1="152.4" y1="129.54" x2="149.86" y2="129.54" width="0.1524" layer="91"/>
-<label x="149.86" y="129.54" size="1.778" layer="95" rot="R180" xref="yes"/>
-</segment>
-<segment>
-<pinref part="ESP1" gate="G$1" pin="22"/>
-<wire x1="91.44" y1="129.54" x2="78.74" y2="129.54" width="0.1524" layer="91"/>
-<label x="78.74" y="129.54" size="1.778" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
 <net name="RX0" class="0">
-<segment>
-<pinref part="SEN-1" gate="G$1" pin="RX"/>
-<wire x1="152.4" y1="124.46" x2="149.86" y2="124.46" width="0.1524" layer="91"/>
-<label x="149.86" y="124.46" size="1.778" layer="95" rot="R180" xref="yes"/>
-</segment>
 <segment>
 <pinref part="ESP1" gate="G$1" pin="19"/>
 <wire x1="119.38" y1="124.46" x2="124.46" y2="124.46" width="0.1524" layer="91"/>
-<label x="124.46" y="124.46" size="1.778" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="3.3V" class="0">
@@ -1525,6 +1507,30 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pinref part="ESP1" gate="G$1" pin="15"/>
 <wire x1="91.44" y1="121.92" x2="76.2" y2="121.92" width="0.1524" layer="91"/>
 <label x="76.2" y="121.92" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="TX1" class="0">
+<segment>
+<pinref part="ESP1" gate="G$1" pin="17"/>
+<label x="134.62" y="129.54" size="1.778" layer="95" xref="yes"/>
+<wire x1="119.38" y1="129.54" x2="134.62" y2="129.54" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="SEN-1" gate="G$1" pin="RX"/>
+<wire x1="152.4" y1="124.46" x2="149.86" y2="124.46" width="0.1524" layer="91"/>
+<label x="149.86" y="124.46" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="RX1" class="0">
+<segment>
+<pinref part="ESP1" gate="G$1" pin="16"/>
+<wire x1="119.38" y1="127" x2="124.46" y2="127" width="0.1524" layer="91"/>
+<label x="124.46" y="127" size="1.778" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="SEN-1" gate="G$1" pin="TX"/>
+<wire x1="152.4" y1="129.54" x2="149.86" y2="129.54" width="0.1524" layer="91"/>
+<label x="149.86" y="129.54" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 </nets>

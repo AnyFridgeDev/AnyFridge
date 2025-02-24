@@ -722,21 +722,21 @@ design rules under a new name.</description>
 <attribute name="DESIGNER" value="Nobody" x="85.09" y="-149.86" size="1.778" layer="27" display="off"/>
 <attribute name="VERSION" value="v01" x="85.09" y="-149.86" size="1.778" layer="27" display="off"/>
 </element>
-<element name="LED-1" library="MISC-PARTS" package="LED4_WP154A4SUREQBFZGC_KNB" value="WP154A4SUREQBFZGC" x="3.81" y="73.66" smashed="yes">
-<attribute name="COPYRIGHT" value="Copyright (C) 2025 Ultra Librarian. All rights reserved." x="38.1" y="-62.23" size="1.778" layer="27" display="off"/>
-<attribute name="MANUFACTURER_PART_NUMBER" value="WP154A4SUREQBFZGC" x="38.1" y="-62.23" size="1.778" layer="27" display="off"/>
-<attribute name="MFR_NAME" value="Kingbright" x="38.1" y="-62.23" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="2.4384" y="73.025" size="1.27" layer="27" ratio="6" rot="SR0"/>
-<attribute name="VALUE" x="3.9878" y="73.025" size="1.27" layer="27" ratio="6" rot="SR0"/>
+<element name="LED-1" library="MISC-PARTS" package="LED4_WP154A4SUREQBFZGC_KNB" value="WP154A4SUREQBFZGC" x="6.35" y="5.08" smashed="yes">
+<attribute name="COPYRIGHT" value="Copyright (C) 2025 Ultra Librarian. All rights reserved." x="40.64" y="-130.81" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER_PART_NUMBER" value="WP154A4SUREQBFZGC" x="40.64" y="-130.81" size="1.778" layer="27" display="off"/>
+<attribute name="MFR_NAME" value="Kingbright" x="40.64" y="-130.81" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="4.9784" y="4.445" size="1.27" layer="27" ratio="6" rot="SR0"/>
+<attribute name="VALUE" x="6.5278" y="4.445" size="1.27" layer="27" ratio="6" rot="SR0"/>
 </element>
 <element name="R1" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/2" value="10k" x="49.53" y="3.81" smashed="yes">
 <attribute name="NAME" x="49.53" y="4.826" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center"/>
 <attribute name="PROD_ID" value="RES-12183" x="85.09" y="-149.86" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="49.53" y="2.794" size="0.6096" layer="27" font="vector" ratio="20" align="top-center"/>
 </element>
-<element name="SCAN-1" library="SEN-18088" package="SEN-18088" value="SEN-18088" x="17.78" y="6.35" smashed="yes" rot="R90">
-<attribute name="NAME" x="15.24" y="8.89" size="1.27" layer="25" rot="R90"/>
-<attribute name="VALUE" x="15.24" y="41.91" size="1.27" layer="27" rot="R90"/>
+<element name="SCAN-1" library="SEN-18088" package="SEN-18088" value="SEN-18088" x="43.18" y="46.99" smashed="yes" rot="R270">
+<attribute name="NAME" x="45.72" y="44.45" size="1.27" layer="25" rot="R270"/>
+<attribute name="VALUE" x="45.72" y="11.43" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="SENS-1" library="MISC-PARTS" package="TSSP77038TT" package3d_urn="urn:adsk.eagle:package:47059864/1" value="TSSP77038TT" x="58.42" y="3.81" smashed="yes">
 <attribute name="AVAILABILITY" value="In Stock" x="85.09" y="-149.86" size="1.778" layer="27" display="off"/>
@@ -744,8 +744,8 @@ design rules under a new name.</description>
 <attribute name="DESCRIPTION" value="                                                      Remote Receiver Sensor 38.0kHz 40m Surface Mount                                              " x="85.09" y="-149.86" size="1.778" layer="27" display="off"/>
 <attribute name="MF" value="Vishay" x="85.09" y="-149.86" size="1.778" layer="27" display="off"/>
 <attribute name="MP" value="TSSP77038TT" x="85.09" y="-149.86" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="62.17" y="4.56" size="1" layer="25" ratio="20" rot="SR0"/>
 <attribute name="NAME" x="62.17" y="4.56" size="1" layer="51" ratio="21" rot="SR0"/>
+<attribute name="NAME" x="62.17" y="4.56" size="1" layer="25" ratio="20" rot="SR0"/>
 <attribute name="PACKAGE" value="None" x="85.09" y="-149.86" size="1.778" layer="27" display="off"/>
 <attribute name="PRICE" value="None" x="85.09" y="-149.86" size="1.778" layer="27" display="off"/>
 <attribute name="SNAPEDA_LINK" value="https://www.snapeda.com/parts/TSSP77038TT/Vishay/view-part/?ref=snap" x="85.09" y="-149.86" size="1.778" layer="27" display="off"/>
@@ -767,45 +767,45 @@ design rules under a new name.</description>
 <contactref element="SENS-1" pad="4"/>
 <contactref element="LED-1" pad="2"/>
 <contactref element="R1" pad="P$1"/>
+<wire x1="60.325" y1="2.91" x2="93.98" y2="29.21" width="0" layer="19" extent="1-1"/>
 <wire x1="56.515" y1="2.91" x2="60.325" y2="2.91" width="0" layer="19" extent="1-1"/>
 <wire x1="45.72" y1="3.81" x2="56.515" y2="2.91" width="0" layer="19" extent="1-1"/>
-<wire x1="5.08" y1="73.66" x2="56.515" y2="2.91" width="0" layer="19" extent="1-1"/>
-<wire x1="41.91" y1="12.7" x2="5.08" y2="73.66" width="0" layer="19" extent="1-1"/>
-<wire x1="93.98" y1="29.21" x2="41.91" y2="12.7" width="0" layer="19" extent="1-1"/>
+<wire x1="19.05" y1="40.64" x2="45.72" y2="3.81" width="0" layer="19" extent="1-1"/>
+<wire x1="7.62" y1="5.08" x2="19.05" y2="40.64" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="3.3V">
 <contactref element="SCAN-1" pad="3.3V"/>
 <contactref element="ESP-1" pad="3V3"/>
 <contactref element="SENS-1" pad="2"/>
 <contactref element="SWITCH-1" pad="2"/>
-<wire x1="76.73" y1="68.87" x2="57.785" y2="2.91" width="0" layer="19" extent="1-1"/>
-<wire x1="41.91" y1="20.32" x2="57.785" y2="2.91" width="0" layer="19" extent="1-1"/>
-<wire x1="93.98" y1="24.13" x2="41.91" y2="20.32" width="0" layer="19" extent="1-1"/>
+<wire x1="93.98" y1="24.13" x2="76.73" y2="68.87" width="0" layer="19" extent="1-1"/>
+<wire x1="57.785" y1="2.91" x2="93.98" y2="24.13" width="0" layer="19" extent="1-1"/>
+<wire x1="19.05" y1="33.02" x2="76.73" y2="68.87" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="TRIG">
 <contactref element="SCAN-1" pad="TRIG"/>
 <contactref element="ESP-1" pad="21"/>
-<wire x1="41.91" y1="22.86" x2="93.98" y2="59.69" width="0" layer="19" extent="1-1"/>
+<wire x1="19.05" y1="30.48" x2="93.98" y2="59.69" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="STAT">
 <contactref element="SCAN-1" pad="STAT"/>
 <contactref element="ESP-1" pad="23"/>
-<wire x1="41.91" y1="25.4" x2="73.66" y2="59.69" width="0" layer="19" extent="1-1"/>
+<wire x1="19.05" y1="27.94" x2="73.66" y2="59.69" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="RED">
 <contactref element="LED-1" pad="1"/>
 <contactref element="ESP-1" pad="33"/>
-<wire x1="73.66" y1="46.99" x2="3.81" y2="73.66" width="0" layer="19" extent="1-1"/>
+<wire x1="73.66" y1="46.99" x2="6.35" y2="5.08" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="BLUE">
 <contactref element="LED-1" pad="3"/>
 <contactref element="ESP-1" pad="12"/>
-<wire x1="73.66" y1="41.91" x2="6.35" y2="73.66" width="0" layer="19" extent="1-1"/>
+<wire x1="73.66" y1="41.91" x2="8.89" y2="5.08" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="GREEN">
 <contactref element="LED-1" pad="4"/>
 <contactref element="ESP-1" pad="27"/>
-<wire x1="73.66" y1="44.45" x2="7.62" y2="73.66" width="0" layer="19" extent="1-1"/>
+<wire x1="73.66" y1="44.45" x2="10.16" y2="5.08" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$1">
 <contactref element="SWITCH-1" pad="1"/>
@@ -815,12 +815,12 @@ design rules under a new name.</description>
 <signal name="TX1">
 <contactref element="ESP-1" pad="17"/>
 <contactref element="SCAN-1" pad="RX"/>
-<wire x1="41.91" y1="15.24" x2="93.98" y2="57.15" width="0" layer="19" extent="1-1"/>
+<wire x1="19.05" y1="38.1" x2="93.98" y2="57.15" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="RX1">
 <contactref element="ESP-1" pad="16"/>
 <contactref element="SCAN-1" pad="TX"/>
-<wire x1="41.91" y1="17.78" x2="93.98" y2="54.61" width="0" layer="19" extent="1-1"/>
+<wire x1="19.05" y1="35.56" x2="93.98" y2="54.61" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="SWI-OUT">
 <contactref element="SWITCH-1" pad="3"/>

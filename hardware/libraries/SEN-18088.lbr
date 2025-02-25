@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.01" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="inch"/>
+<grid distance="50" unitdist="mil" unit="mil" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="16" fill="1" visible="no" active="yes"/>
@@ -78,8 +78,6 @@
 <wire x1="44.45" y1="0" x2="44.45" y2="-25.4" width="0.127" layer="21"/>
 <wire x1="44.45" y1="-25.4" x2="0" y2="-25.4" width="0.127" layer="21"/>
 <wire x1="0" y1="-25.4" x2="0" y2="0" width="0.127" layer="21"/>
-<dimension x1="0" y1="2.54" x2="44.45" y2="2.54" x3="22.225" y3="8.89" textsize="1.27" layer="21" dtype="horizontal" unit="inch"/>
-<dimension x1="48.26" y1="0" x2="49.53" y2="-25.4" x3="53.34" y3="-12.7" textsize="1.27" layer="21" dtype="vertical" unit="inch"/>
 <pad name="GND" x="6.35" y="-24.13" drill="1.016" diameter="2.032"/>
 <pad name="RX" x="8.89" y="-24.13" drill="1.016" diameter="2.032"/>
 <pad name="TX" x="11.43" y="-24.13" drill="1.016" diameter="2.032"/>
@@ -88,9 +86,6 @@
 <pad name="STAT" x="19.05" y="-24.13" drill="1.016" diameter="2.032"/>
 <text x="2.54" y="2.54" size="1.27" layer="25">&gt;NAME</text>
 <text x="35.56" y="2.54" size="1.27" layer="27">&gt;VALUE</text>
-<dimension x1="3.81" y1="-27.94" x2="6.35" y2="-27.94" x3="5.08" y3="-27.94" textsize="1.27" layer="21" unit="inch"/>
-<dimension x1="-1.27" y1="-25.4" x2="-1.27" y2="-24.13" x3="-3.81" y3="-24.765" textsize="1.27" layer="21" unit="inch"/>
-<dimension x1="0" y1="-30.48" x2="6.35" y2="-30.48" x3="3.175" y3="-33.02" textsize="1.27" layer="21" unit="inch"/>
 </package>
 </packages>
 <symbols>

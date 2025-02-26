@@ -1327,6 +1327,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <sheets>
 <sheet>
 <plain>
+<text x="99.06" y="63.5" size="1.778" layer="91">BATTERY POWER WILL BE ATTACHED VIA VBAT AND GND.
+ALTERNATIVELY AN ONBOARD HEADER CAN BE USED FOR LIPO.</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0" smashed="yes"/>
@@ -1336,29 +1338,29 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="DRAWING_NAME" x="162.814" y="17.78" size="2.7432" layer="94" font="vector"/>
 <attribute name="REV" x="236.22" y="6.604" size="2.7432" layer="94" font="vector"/>
 </instance>
-<instance part="LED-1" gate="A" x="40.64" y="81.28" smashed="yes" grouprefs="LED">
-<attribute name="NAME" x="56.2356" y="92.9386" size="2.0828" layer="95" ratio="6" rot="SR0"/>
-<attribute name="VALUE" x="55.6006" y="90.3986" size="2.0828" layer="96" ratio="6" rot="SR0"/>
+<instance part="LED-1" gate="A" x="35.56" y="83.82" smashed="yes" grouprefs="LED">
+<attribute name="NAME" x="51.1556" y="95.4786" size="2.0828" layer="95" ratio="6" rot="SR0"/>
+<attribute name="VALUE" x="50.5206" y="92.9386" size="2.0828" layer="96" ratio="6" rot="SR0"/>
 </instance>
-<instance part="SENS-1" gate="G$1" x="180.34" y="73.66" smashed="yes" rot="MR0" grouprefs="MOTION-SENSOR">
-<attribute name="NAME" x="185.42" y="82.55" size="1.27" layer="95" rot="MR0"/>
-<attribute name="VALUE" x="185.42" y="80.01" size="1.27" layer="96" rot="MR0"/>
+<instance part="SENS-1" gate="G$1" x="187.96" y="81.28" smashed="yes" rot="MR0" grouprefs="MOTION-SENSOR">
+<attribute name="NAME" x="193.04" y="90.17" size="1.27" layer="95" rot="MR0"/>
+<attribute name="VALUE" x="193.04" y="87.63" size="1.27" layer="96" rot="MR0"/>
 </instance>
-<instance part="SWITCH-1" gate="G$1" x="63.5" y="121.92" smashed="yes" grouprefs="SWITCH">
-<attribute name="NAME" x="55.88" y="130.302" size="1.778" layer="95"/>
-<attribute name="VALUE" x="55.88" y="113.538" size="1.778" layer="96" align="top-left"/>
+<instance part="SWITCH-1" gate="G$1" x="58.42" y="124.46" smashed="yes" grouprefs="SWITCH">
+<attribute name="NAME" x="50.8" y="132.842" size="1.778" layer="95"/>
+<attribute name="VALUE" x="50.8" y="116.078" size="1.778" layer="96" align="top-left"/>
 </instance>
-<instance part="SCAN-1" gate="G$1" x="182.88" y="132.08" smashed="yes" rot="R270" grouprefs="SCANNER">
-<attribute name="NAME" x="200.66" y="132.08" size="1.778" layer="95" rot="R270"/>
-<attribute name="VALUE" x="200.66" y="114.3" size="1.778" layer="96" rot="R270"/>
+<instance part="SCAN-1" gate="G$1" x="190.5" y="139.7" smashed="yes" rot="R270" grouprefs="SCANNER">
+<attribute name="NAME" x="208.28" y="139.7" size="1.778" layer="95" rot="R270"/>
+<attribute name="VALUE" x="208.28" y="121.92" size="1.778" layer="96" rot="R270"/>
 </instance>
 <instance part="ESP-1" gate="G$1" x="124.46" y="78.74" smashed="yes" grouprefs="MCU">
 <attribute name="NAME" x="124.46" y="124.46" size="1.778" layer="95"/>
 <attribute name="VALUE" x="132.08" y="76.2" size="1.778" layer="96" rot="MR0"/>
 </instance>
-<instance part="R1" gate="G$1" x="45.72" y="127" smashed="yes" grouprefs="SWITCH">
-<attribute name="NAME" x="45.72" y="128.524" size="1.778" layer="95" font="vector" align="bottom-center"/>
-<attribute name="VALUE" x="45.72" y="125.476" size="1.778" layer="96" font="vector" align="top-center"/>
+<instance part="R1" gate="G$1" x="40.64" y="129.54" smashed="yes" grouprefs="SWITCH">
+<attribute name="NAME" x="40.64" y="131.064" size="1.778" layer="95" font="vector" align="bottom-center"/>
+<attribute name="VALUE" x="40.64" y="128.016" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
 </instances>
 <busses>
@@ -1367,8 +1369,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <net name="GND" class="0">
 <segment>
 <pinref part="SCAN-1" gate="G$1" pin="GND"/>
-<wire x1="182.88" y1="132.08" x2="180.34" y2="132.08" width="0.1524" layer="91" grouprefs="SCANNER"/>
-<label x="180.34" y="132.08" size="1.778" layer="95" rot="R180" xref="yes" grouprefs="SCANNER"/>
+<wire x1="190.5" y1="139.7" x2="187.96" y2="139.7" width="0.1524" layer="91" grouprefs="SCANNER"/>
+<label x="187.96" y="139.7" size="1.778" layer="95" rot="R180" xref="yes" grouprefs="SCANNER"/>
 </segment>
 <segment>
 <pinref part="ESP-1" gate="G$1" pin="GND"/>
@@ -1378,25 +1380,25 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </segment>
 <segment>
 <pinref part="SENS-1" gate="G$1" pin="GND"/>
-<wire x1="187.96" y1="71.12" x2="190.5" y2="68.58" width="0.1524" layer="91" grouprefs="MOTION-SENSOR"/>
-<label x="190.5" y="68.58" size="1.27" layer="95" xref="yes" grouprefs="MOTION-SENSOR"/>
+<wire x1="195.58" y1="78.74" x2="198.12" y2="76.2" width="0.1524" layer="91" grouprefs="MOTION-SENSOR"/>
+<label x="198.12" y="76.2" size="1.27" layer="95" xref="yes" grouprefs="MOTION-SENSOR"/>
 </segment>
 <segment>
 <pinref part="LED-1" gate="A" pin="2"/>
-<wire x1="40.64" y1="81.28" x2="38.1" y2="81.28" width="0.1524" layer="91" grouprefs="LED"/>
-<label x="38.1" y="81.28" size="1.778" layer="95" rot="R180" xref="yes" grouprefs="LED"/>
+<wire x1="35.56" y1="83.82" x2="33.02" y2="83.82" width="0.1524" layer="91" grouprefs="LED"/>
+<label x="33.02" y="83.82" size="1.778" layer="95" rot="R180" xref="yes" grouprefs="LED"/>
 </segment>
 <segment>
 <pinref part="R1" gate="G$1" pin="1"/>
-<wire x1="40.64" y1="127" x2="38.1" y2="127" width="0.1524" layer="91" grouprefs="SWITCH"/>
-<label x="38.1" y="127" size="1.778" layer="95" rot="R180" xref="yes" grouprefs="SWITCH"/>
+<wire x1="35.56" y1="129.54" x2="33.02" y2="129.54" width="0.1524" layer="91" grouprefs="SWITCH"/>
+<label x="33.02" y="129.54" size="1.778" layer="95" rot="R180" xref="yes" grouprefs="SWITCH"/>
 </segment>
 </net>
 <net name="3.3V" class="0">
 <segment>
 <pinref part="SCAN-1" gate="G$1" pin="3.3V"/>
-<wire x1="182.88" y1="116.84" x2="180.34" y2="116.84" width="0.1524" layer="91" grouprefs="SCANNER"/>
-<label x="180.34" y="116.84" size="1.778" layer="95" rot="R180" xref="yes" grouprefs="SCANNER"/>
+<wire x1="190.5" y1="124.46" x2="187.96" y2="124.46" width="0.1524" layer="91" grouprefs="SCANNER"/>
+<label x="187.96" y="124.46" size="1.778" layer="95" rot="R180" xref="yes" grouprefs="SCANNER"/>
 </segment>
 <segment>
 <pinref part="ESP-1" gate="G$1" pin="3V3"/>
@@ -1405,20 +1407,20 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </segment>
 <segment>
 <pinref part="SENS-1" gate="G$1" pin="VS"/>
-<wire x1="187.96" y1="76.2" x2="190.5" y2="78.74" width="0.1524" layer="91" grouprefs="MOTION-SENSOR"/>
-<label x="190.5" y="78.74" size="1.27" layer="95" xref="yes" grouprefs="MOTION-SENSOR"/>
+<wire x1="195.58" y1="83.82" x2="198.12" y2="86.36" width="0.1524" layer="91" grouprefs="MOTION-SENSOR"/>
+<label x="198.12" y="86.36" size="1.27" layer="95" xref="yes" grouprefs="MOTION-SENSOR"/>
 </segment>
 <segment>
 <pinref part="SWITCH-1" gate="G$1" pin="2"/>
-<wire x1="50.8" y1="116.84" x2="48.26" y2="116.84" width="0.1524" layer="91" grouprefs="SWITCH"/>
-<label x="48.26" y="116.84" size="1.778" layer="95" rot="R180" xref="yes" grouprefs="SWITCH"/>
+<wire x1="45.72" y1="119.38" x2="43.18" y2="119.38" width="0.1524" layer="91" grouprefs="SWITCH"/>
+<label x="43.18" y="119.38" size="1.778" layer="95" rot="R180" xref="yes" grouprefs="SWITCH"/>
 </segment>
 </net>
 <net name="TRIG" class="0">
 <segment>
 <pinref part="SCAN-1" gate="G$1" pin="TRIG"/>
-<wire x1="182.88" y1="111.76" x2="180.34" y2="111.76" width="0.1524" layer="91" grouprefs="SCANNER"/>
-<label x="180.34" y="111.76" size="1.778" layer="95" rot="R180" xref="yes" grouprefs="SCANNER"/>
+<wire x1="190.5" y1="119.38" x2="187.96" y2="119.38" width="0.1524" layer="91" grouprefs="SCANNER"/>
+<label x="187.96" y="119.38" size="1.778" layer="95" rot="R180" xref="yes" grouprefs="SCANNER"/>
 </segment>
 <segment>
 <pinref part="ESP-1" gate="G$1" pin="21"/>
@@ -1429,8 +1431,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <net name="STAT" class="0">
 <segment>
 <pinref part="SCAN-1" gate="G$1" pin="STAT"/>
-<wire x1="182.88" y1="106.68" x2="180.34" y2="106.68" width="0.1524" layer="91" grouprefs="SCANNER"/>
-<label x="180.34" y="106.68" size="1.778" layer="95" rot="R180" xref="yes" grouprefs="SCANNER"/>
+<wire x1="190.5" y1="114.3" x2="187.96" y2="114.3" width="0.1524" layer="91" grouprefs="SCANNER"/>
+<label x="187.96" y="114.3" size="1.778" layer="95" rot="R180" xref="yes" grouprefs="SCANNER"/>
 </segment>
 <segment>
 <pinref part="ESP-1" gate="G$1" pin="23"/>
@@ -1441,8 +1443,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <net name="RED" class="0">
 <segment>
 <pinref part="LED-1" gate="A" pin="1"/>
-<wire x1="81.28" y1="78.74" x2="83.82" y2="78.74" width="0.1524" layer="91" grouprefs="LED"/>
-<label x="83.82" y="78.74" size="1.27" layer="95" xref="yes" grouprefs="LED"/>
+<wire x1="76.2" y1="81.28" x2="78.74" y2="81.28" width="0.1524" layer="91" grouprefs="LED"/>
+<label x="78.74" y="81.28" size="1.27" layer="95" xref="yes" grouprefs="LED"/>
 </segment>
 <segment>
 <pinref part="ESP-1" gate="G$1" pin="33"/>
@@ -1453,8 +1455,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <net name="BLUE" class="0">
 <segment>
 <pinref part="LED-1" gate="A" pin="3"/>
-<label x="83.82" y="81.28" size="1.27" layer="95" xref="yes" grouprefs="LED"/>
-<wire x1="81.28" y1="81.28" x2="83.82" y2="81.28" width="0.1524" layer="91" grouprefs="LED"/>
+<label x="78.74" y="83.82" size="1.27" layer="95" xref="yes" grouprefs="LED"/>
+<wire x1="76.2" y1="83.82" x2="78.74" y2="83.82" width="0.1524" layer="91" grouprefs="LED"/>
 </segment>
 <segment>
 <pinref part="ESP-1" gate="G$1" pin="12"/>
@@ -1465,8 +1467,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <net name="GREEN" class="0">
 <segment>
 <pinref part="LED-1" gate="A" pin="4"/>
-<wire x1="81.28" y1="83.82" x2="83.82" y2="83.82" width="0.1524" layer="91" grouprefs="LED"/>
-<label x="83.82" y="83.82" size="1.27" layer="95" xref="yes" grouprefs="LED"/>
+<wire x1="76.2" y1="86.36" x2="78.74" y2="86.36" width="0.1524" layer="91" grouprefs="LED"/>
+<label x="78.74" y="86.36" size="1.27" layer="95" xref="yes" grouprefs="LED"/>
 </segment>
 <segment>
 <pinref part="ESP-1" gate="G$1" pin="27"/>
@@ -1488,8 +1490,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </segment>
 <segment>
 <pinref part="SCAN-1" gate="G$1" pin="RX"/>
-<wire x1="182.88" y1="121.92" x2="180.34" y2="121.92" width="0.1524" layer="91" grouprefs="SCANNER"/>
-<label x="180.34" y="121.92" size="1.778" layer="95" rot="R180" xref="yes" grouprefs="SCANNER"/>
+<wire x1="190.5" y1="129.54" x2="187.96" y2="129.54" width="0.1524" layer="91" grouprefs="SCANNER"/>
+<label x="187.96" y="129.54" size="1.778" layer="95" rot="R180" xref="yes" grouprefs="SCANNER"/>
 </segment>
 </net>
 <net name="RX1" class="0">
@@ -1500,15 +1502,15 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </segment>
 <segment>
 <pinref part="SCAN-1" gate="G$1" pin="TX"/>
-<wire x1="182.88" y1="127" x2="180.34" y2="127" width="0.1524" layer="91" grouprefs="SCANNER"/>
-<label x="180.34" y="127" size="1.778" layer="95" rot="R180" xref="yes" grouprefs="SCANNER"/>
+<wire x1="190.5" y1="134.62" x2="187.96" y2="134.62" width="0.1524" layer="91" grouprefs="SCANNER"/>
+<label x="187.96" y="134.62" size="1.778" layer="95" rot="R180" xref="yes" grouprefs="SCANNER"/>
 </segment>
 </net>
 <net name="SWI-OUT" class="0">
 <segment>
 <pinref part="SWITCH-1" gate="G$1" pin="3"/>
-<wire x1="76.2" y1="127" x2="78.74" y2="127" width="0.1524" layer="91" grouprefs="SWITCH"/>
-<label x="78.74" y="127" size="1.778" layer="95" xref="yes" grouprefs="SWITCH"/>
+<wire x1="71.12" y1="129.54" x2="73.66" y2="129.54" width="0.1524" layer="91" grouprefs="SWITCH"/>
+<label x="73.66" y="129.54" size="1.778" layer="95" xref="yes" grouprefs="SWITCH"/>
 </segment>
 <segment>
 <pinref part="ESP-1" gate="G$1" pin="15"/>
@@ -1519,8 +1521,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <net name="SENS-OUT" class="0">
 <segment>
 <pinref part="SENS-1" gate="G$1" pin="OUT"/>
-<wire x1="187.96" y1="73.66" x2="190.5" y2="73.66" width="0.1524" layer="91" grouprefs="MOTION-SENSOR"/>
-<label x="190.5" y="73.66" size="1.27" layer="95" xref="yes" grouprefs="MOTION-SENSOR"/>
+<wire x1="195.58" y1="81.28" x2="198.12" y2="81.28" width="0.1524" layer="91" grouprefs="MOTION-SENSOR"/>
+<label x="198.12" y="81.28" size="1.27" layer="95" xref="yes" grouprefs="MOTION-SENSOR"/>
 </segment>
 <segment>
 <pinref part="ESP-1" gate="G$1" pin="13"/>

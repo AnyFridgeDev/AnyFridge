@@ -28,15 +28,15 @@
 <layer number="18" name="Vias" color="2" fill="1" visible="no" active="no"/>
 <layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="no"/>
 <layer number="20" name="Dimension" color="24" fill="1" visible="no" active="no"/>
-<layer number="21" name="tPlace" color="16" fill="1" visible="no" active="no"/>
-<layer number="22" name="bPlace" color="14" fill="1" visible="no" active="no"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="no" active="no"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="no" active="no"/>
 <layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="no"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="no"/>
 <layer number="25" name="tNames" color="7" fill="1" visible="no" active="no"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="no" active="no"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="no"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="no" active="no"/>
-<layer number="29" name="tStop" color="15" fill="3" visible="no" active="no"/>
+<layer number="29" name="tStop" color="7" fill="3" visible="no" active="no"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="no"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="no"/>
 <layer number="32" name="bCream" color="7" fill="5" visible="no" active="no"/>
@@ -56,9 +56,9 @@
 <layer number="46" name="Milling" color="3" fill="1" visible="no" active="no"/>
 <layer number="47" name="Measures" color="7" fill="1" visible="no" active="no"/>
 <layer number="48" name="Document" color="7" fill="1" visible="no" active="no"/>
-<layer number="49" name="Reference" color="13" fill="1" visible="no" active="no"/>
+<layer number="49" name="Reference" color="7" fill="1" visible="no" active="no"/>
 <layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
-<layer number="51" name="tDocu" color="6" fill="1" visible="no" active="no"/>
+<layer number="51" name="tDocu" color="7" fill="1" visible="no" active="no"/>
 <layer number="52" name="bDocu" color="7" fill="1" visible="no" active="no"/>
 <layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
 <layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
@@ -297,10 +297,10 @@ Ethan Anderson, Isaac Fletcher</text>
 <library name="MISC-PARTS">
 <packages>
 <package name="LED4_WP154A4SUREQBFZGC_KNB">
-<pad name="1" x="0" y="0" drill="0.889" diameter="1.1938"/>
-<pad name="2" x="1.27" y="0" drill="0.889" diameter="1.1938"/>
-<pad name="3" x="2.54" y="0" drill="0.889" diameter="1.1938"/>
-<pad name="4" x="3.81" y="0" drill="0.889" diameter="1.1938"/>
+<pad name="1" x="-0.127" y="0" drill="0.889" diameter="1.1938"/>
+<pad name="2" x="2.159" y="0" drill="0.889" diameter="1.1938"/>
+<pad name="3" x="4.445" y="0" drill="0.889" diameter="1.1938"/>
+<pad name="4" x="6.731" y="0" drill="0.889" diameter="1.1938"/>
 <wire x1="0" y1="0" x2="0" y2="5.1054" width="0.1524" layer="48"/>
 <wire x1="0" y1="5.1054" x2="0" y2="5.4864" width="0.1524" layer="48"/>
 <wire x1="1.27" y1="0" x2="1.27" y2="5.1054" width="0.1524" layer="48"/>
@@ -369,9 +369,9 @@ Ethan Anderson, Isaac Fletcher</text>
 <text x="7.8994" y="-0.3048" size="0.635" layer="48" ratio="4" rot="SR0">0in/0mm</text>
 <text x="-20.0406" y="1.1684" size="0.635" layer="48" ratio="4" rot="SR0">0.116in/2.946mm</text>
 <text x="-18.7706" y="-0.3048" size="0.635" layer="48" ratio="4" rot="SR0">0.232in/5.893mm</text>
-<wire x1="-1.1684" y1="-3.0734" x2="4.9784" y2="-3.0734" width="0.1524" layer="21"/>
-<wire x1="4.9784" y1="-3.0734" x2="4.9784" y2="3.0734" width="0.1524" layer="21"/>
-<wire x1="4.9784" y1="3.0734" x2="-1.1684" y2="3.0734" width="0.1524" layer="21"/>
+<wire x1="-1.1684" y1="-3.0734" x2="8.0264" y2="-3.0734" width="0.1524" layer="21"/>
+<wire x1="8.0264" y1="-3.0734" x2="8.0264" y2="3.0734" width="0.1524" layer="21"/>
+<wire x1="8.0264" y1="3.0734" x2="-1.1684" y2="3.0734" width="0.1524" layer="21"/>
 <wire x1="-1.1684" y1="3.0734" x2="-1.1684" y2="-3.0734" width="0.1524" layer="21"/>
 <wire x1="-2.5654" y1="0" x2="-3.3274" y2="0" width="0.508" layer="21" curve="-180"/>
 <wire x1="-3.3274" y1="0" x2="-2.5654" y2="0" width="0.508" layer="21" curve="-180"/>

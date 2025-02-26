@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
+<grid distance="50" unitdist="mil" unit="mil" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
@@ -93,11 +93,6 @@
 <pad name="RESET" x="20.32" y="13.97" drill="1" diameter="1.27" shape="square"/>
 <text x="-1.27" y="60.96" size="1.27" layer="25">&gt;NAME</text>
 <text x="-1.27" y="-2.54" size="1.27" layer="27">&gt;VALUE</text>
-<hole x="1.27" y="55.88" drill="3.048"/>
-<hole x="19.05" y="55.88" drill="3.048"/>
-<hole x="19.05" y="2.54" drill="2.54"/>
-<hole x="19.05" y="2.54" drill="3.048"/>
-<hole x="1.27" y="2.54" drill="3.048"/>
 <wire x1="-1.27" y1="57.15" x2="1.27" y2="59.69" width="0.2032" layer="21" curve="-90"/>
 <wire x1="21.59" y1="57.15" x2="19.05" y2="59.69" width="0.2032" layer="21" curve="90"/>
 <wire x1="19.05" y1="59.69" x2="1.27" y2="59.69" width="0.2032" layer="21"/>

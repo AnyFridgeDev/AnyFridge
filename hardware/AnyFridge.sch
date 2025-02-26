@@ -703,42 +703,44 @@ Ethan Anderson, Isaac Fletcher</text>
 <packages>
 <package name="ESP32">
 <description>Package for the ESP32 WROOM Development Board</description>
-<dimension x1="0" y1="59.69" x2="22.86" y2="59.69" x3="11.43" y3="60.96" textsize="1.27" layer="47" dtype="vertical" unit="inch"/>
-<dimension x1="22.86" y1="58.42" x2="24.13" y2="0" x3="25.4" y3="29.21" textsize="1.27" layer="47" dtype="vertical" unit="inch"/>
-<wire x1="0" y1="57.15" x2="22.86" y2="57.15" width="0.127" layer="21"/>
-<wire x1="22.86" y1="57.15" x2="22.86" y2="0" width="0.127" layer="21"/>
-<wire x1="22.86" y1="0" x2="0" y2="0" width="0.127" layer="21"/>
-<wire x1="0" y1="0" x2="0" y2="57.15" width="0.127" layer="21"/>
-<pad name="23" x="1.27" y="54.61" drill="0.6" shape="square"/>
-<pad name="22" x="1.27" y="52.07" drill="0.6" shape="square"/>
-<pad name="14" x="1.27" y="49.53" drill="0.6" shape="square"/>
-<pad name="32" x="1.27" y="46.99" drill="0.6" shape="square"/>
-<pad name="15" x="1.27" y="44.45" drill="0.6" shape="square"/>
-<pad name="33" x="1.27" y="41.91" drill="0.6" shape="square"/>
-<pad name="27" x="1.27" y="39.37" drill="0.6" shape="square"/>
-<pad name="12" x="1.27" y="36.83" drill="0.6" shape="square"/>
-<pad name="13" x="1.27" y="34.29" drill="0.6" shape="square"/>
-<pad name="VUSB" x="1.27" y="31.75" drill="0.6" shape="square"/>
-<pad name="EN" x="1.27" y="29.21" drill="0.6" shape="square"/>
-<pad name="VBAT" x="1.27" y="26.67" drill="0.6" shape="square"/>
-<pad name="21" x="21.59" y="54.61" drill="0.6" shape="square"/>
-<pad name="17" x="21.59" y="52.07" drill="0.6" shape="square"/>
-<pad name="16" x="21.59" y="49.53" drill="0.6" shape="square"/>
-<pad name="19" x="21.59" y="46.99" drill="0.6" shape="square"/>
-<pad name="18" x="21.59" y="44.45" drill="0.6" shape="square"/>
-<pad name="5" x="21.59" y="41.91" drill="0.6" shape="square"/>
-<pad name="A5" x="21.59" y="39.37" drill="0.6" shape="square"/>
-<pad name="A4" x="21.59" y="36.83" drill="0.6" shape="square"/>
-<pad name="A3" x="21.59" y="34.29" drill="0.6" shape="square"/>
-<pad name="A2" x="21.59" y="31.75" drill="0.6" shape="square"/>
-<pad name="A1" x="21.59" y="29.21" drill="0.6" shape="square"/>
-<pad name="A0" x="21.59" y="26.67" drill="0.6" shape="square"/>
-<pad name="GND" x="21.59" y="24.13" drill="0.6" shape="square"/>
-<pad name="NC" x="21.59" y="21.59" drill="0.6" shape="square"/>
-<pad name="3V3" x="21.59" y="19.05" drill="0.6" shape="square"/>
-<pad name="RESET" x="21.59" y="16.51" drill="0.6" shape="square"/>
-<text x="0" y="58.42" size="1.27" layer="25">&gt;NAME</text>
-<text x="0" y="-2.54" size="1.27" layer="27">&gt;VALUE</text>
+<wire x1="21.59" y1="57.15" x2="21.59" y2="2.54" width="0.2032" layer="21"/>
+<wire x1="-1.27" y1="2.54" x2="-1.27" y2="57.15" width="0.2032" layer="21"/>
+<pad name="23" x="0" y="52.07" drill="1" diameter="1.27" shape="square"/>
+<pad name="22" x="0" y="49.53" drill="1" diameter="1.27" shape="square"/>
+<pad name="14" x="0" y="46.99" drill="1" diameter="1.27" shape="square"/>
+<pad name="32" x="0" y="44.45" drill="1" diameter="1.27" shape="square"/>
+<pad name="15" x="0" y="41.91" drill="1" diameter="1.27" shape="square"/>
+<pad name="33" x="0" y="39.37" drill="1" diameter="1.27" shape="square"/>
+<pad name="27" x="0" y="36.83" drill="1" diameter="1.27" shape="square"/>
+<pad name="12" x="0" y="34.29" drill="1" diameter="1.27" shape="square"/>
+<pad name="13" x="0" y="31.75" drill="1" diameter="1.27" shape="square"/>
+<pad name="VUSB" x="0" y="29.21" drill="1" diameter="1.27" shape="square"/>
+<pad name="EN" x="0" y="26.67" drill="1" diameter="1.27" shape="square"/>
+<pad name="VBAT" x="0" y="24.13" drill="1" diameter="1.27" shape="square"/>
+<pad name="21" x="20.32" y="52.07" drill="1" diameter="1.27" shape="square"/>
+<pad name="17" x="20.32" y="49.53" drill="1" diameter="1.27" shape="square"/>
+<pad name="16" x="20.32" y="46.99" drill="1" diameter="1.27" shape="square"/>
+<pad name="19" x="20.32" y="44.45" drill="1" diameter="1.27" shape="square"/>
+<pad name="18" x="20.32" y="41.91" drill="1" diameter="1.27" shape="square"/>
+<pad name="5" x="20.32" y="39.37" drill="1" diameter="1.27" shape="square"/>
+<pad name="A5" x="20.32" y="36.83" drill="1" diameter="1.27" shape="square"/>
+<pad name="A4" x="20.32" y="34.29" drill="1" diameter="1.27" shape="square"/>
+<pad name="A3" x="20.32" y="31.75" drill="1" diameter="1.27" shape="square"/>
+<pad name="A2" x="20.32" y="29.21" drill="1" diameter="1.27" shape="square"/>
+<pad name="A1" x="20.32" y="26.67" drill="1" diameter="1.27" shape="square"/>
+<pad name="A0" x="20.32" y="24.13" drill="1" diameter="1.27" shape="square"/>
+<pad name="GND" x="20.32" y="21.59" drill="1" diameter="1.27" shape="square"/>
+<pad name="NC" x="20.32" y="19.05" drill="1" diameter="1.27" shape="square"/>
+<pad name="3V3" x="20.32" y="16.51" drill="1" diameter="1.27" shape="square"/>
+<pad name="RESET" x="20.32" y="13.97" drill="1" diameter="1.27" shape="square"/>
+<text x="-1.27" y="60.96" size="1.27" layer="25">&gt;NAME</text>
+<text x="-1.27" y="-2.54" size="1.27" layer="27">&gt;VALUE</text>
+<wire x1="-1.27" y1="57.15" x2="1.27" y2="59.69" width="0.2032" layer="21" curve="-90"/>
+<wire x1="21.59" y1="57.15" x2="19.05" y2="59.69" width="0.2032" layer="21" curve="90"/>
+<wire x1="19.05" y1="59.69" x2="1.27" y2="59.69" width="0.2032" layer="21"/>
+<wire x1="-1.27" y1="2.54" x2="1.27" y2="0" width="0.2032" layer="21" curve="90"/>
+<wire x1="1.27" y1="0" x2="19.05" y2="0" width="0.2032" layer="21"/>
+<wire x1="21.59" y1="2.54" x2="19.05" y2="0" width="0.2032" layer="21" curve="-90"/>
 </package>
 </packages>
 <symbols>

@@ -2601,9 +2601,9 @@ ALTERNATIVELY AN ONBOARD HEADER CAN BE USED FOR LIPO.</text>
 <attribute name="NAME" x="63.5" y="95.504" size="1.778" layer="95" font="vector" align="bottom-center"/>
 <attribute name="VALUE" x="63.5" y="92.456" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="R4" gate="G$1" x="63.5" y="86.36" smashed="yes">
-<attribute name="NAME" x="63.5" y="87.884" size="1.778" layer="95" font="vector" align="bottom-center"/>
-<attribute name="VALUE" x="63.5" y="84.836" size="1.778" layer="96" font="vector" align="top-center"/>
+<instance part="R4" gate="G$1" x="66.04" y="86.36" smashed="yes">
+<attribute name="NAME" x="66.04" y="87.884" size="1.778" layer="95" font="vector" align="bottom-center"/>
+<attribute name="VALUE" x="66.04" y="84.836" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
 </instances>
 <busses>
@@ -2695,14 +2695,14 @@ ALTERNATIVELY AN ONBOARD HEADER CAN BE USED FOR LIPO.</text>
 </net>
 <net name="BLUE" class="0">
 <segment>
-<label x="71.12" y="86.36" size="1.27" layer="95" xref="yes" grouprefs="LED"/>
-<pinref part="R4" gate="G$1" pin="2"/>
-<wire x1="68.58" y1="86.36" x2="71.12" y2="86.36" width="0.1524" layer="91" grouprefs="LED"/>
-</segment>
-<segment>
 <pinref part="ESP-1" gate="G$1" pin="12"/>
 <wire x1="119.38" y1="101.6" x2="116.84" y2="101.6" width="0.1524" layer="91" grouprefs="MCU"/>
 <label x="116.84" y="101.6" size="1.27" layer="95" rot="R180" xref="yes" grouprefs="MCU"/>
+</segment>
+<segment>
+<pinref part="R4" gate="G$1" pin="2"/>
+<wire x1="71.12" y1="86.36" x2="73.66" y2="86.36" width="0.1524" layer="91"/>
+<label x="73.66" y="86.36" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="GREEN" class="0">
@@ -2781,7 +2781,7 @@ ALTERNATIVELY AN ONBOARD HEADER CAN BE USED FOR LIPO.</text>
 <label x="116.84" y="99.06" size="1.27" layer="95" rot="R180" xref="yes" grouprefs="MCU"/>
 </segment>
 </net>
-<net name="RED-OUT" class="0">
+<net name="RED-IN" class="0">
 <segment>
 <pinref part="LED-1" gate="A" pin="1"/>
 <pinref part="R2" gate="G$1" pin="1"/>
@@ -2800,17 +2800,18 @@ ALTERNATIVELY AN ONBOARD HEADER CAN BE USED FOR LIPO.</text>
 <label x="116.84" y="106.68" size="1.27" layer="95" rot="R180" xref="yes" grouprefs="MCU"/>
 </segment>
 </net>
-<net name="N$2" class="0">
+<net name="GREEN-IN" class="0">
 <segment>
 <pinref part="LED-1" gate="A" pin="4"/>
 <pinref part="R3" gate="G$1" pin="1"/>
 <wire x1="58.42" y1="93.98" x2="58.42" y2="88.9" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$3" class="0">
+<net name="BLUE-IN" class="0">
 <segment>
 <pinref part="LED-1" gate="A" pin="3"/>
 <pinref part="R4" gate="G$1" pin="1"/>
+<wire x1="60.96" y1="86.36" x2="58.42" y2="86.36" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

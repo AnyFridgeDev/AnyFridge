@@ -860,8 +860,8 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="DESCRIPTION" value="                                                      Remote Receiver Sensor 38.0kHz 40m Surface Mount                                              " x="35.56" y="-148.59" size="1.778" layer="27" display="off"/>
 <attribute name="MF" value="Vishay" x="35.56" y="-148.59" size="1.778" layer="27" display="off"/>
 <attribute name="MP" value="TSSP77038TT" x="35.56" y="-148.59" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="12.64" y="5.83" size="1" layer="51" ratio="21" rot="SR0"/>
 <attribute name="NAME" x="12.64" y="5.83" size="1" layer="25" ratio="20" rot="SR0"/>
+<attribute name="NAME" x="12.64" y="5.83" size="1" layer="51" ratio="21" rot="SR0"/>
 <attribute name="PACKAGE" value="None" x="35.56" y="-148.59" size="1.778" layer="27" display="off"/>
 <attribute name="PRICE" value="None" x="35.56" y="-148.59" size="1.778" layer="27" display="off"/>
 <attribute name="SNAPEDA_LINK" value="https://www.snapeda.com/parts/TSSP77038TT/Vishay/view-part/?ref=snap" x="35.56" y="-148.59" size="1.778" layer="27" display="off"/>
@@ -976,9 +976,8 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <signal name="BLUE">
 <contactref element="ESP-1" pad="12"/>
 <contactref element="R4" pad="2"/>
-<wire x1="10.16" y1="43.6" x2="10.16" y2="40.64" width="0.4064" layer="1"/>
-<wire x1="10.16" y1="40.64" x2="13.97" y2="36.83" width="0.4064" layer="1"/>
-<wire x1="13.97" y1="36.83" x2="20.32" y2="36.83" width="0.4064" layer="1"/>
+<wire x1="10.16" y1="43.6" x2="16.93" y2="36.83" width="0.4064" layer="1"/>
+<wire x1="16.93" y1="36.83" x2="20.32" y2="36.83" width="0.4064" layer="1"/>
 </signal>
 <signal name="GREEN">
 <contactref element="ESP-1" pad="27"/>
@@ -1036,7 +1035,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="20.32" y1="34.29" x2="9.525" y2="24.765" width="0.4064" layer="1"/>
 <wire x1="9.525" y1="24.765" x2="9.525" y2="4.18" width="0.4064" layer="1"/>
 </signal>
-<signal name="RED-OUT">
+<signal name="RED-IN">
 <contactref element="LED-1" pad="1"/>
 <contactref element="R2" pad="1"/>
 <wire x1="7.493" y1="53.34" x2="7.493" y2="46.443" width="0.4064" layer="1"/>
@@ -1045,17 +1044,19 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <signal name="RED">
 <contactref element="R2" pad="2"/>
 <contactref element="ESP-1" pad="33"/>
-<wire x1="6.35" y1="43.6" x2="6.35" y2="41.91" width="0.4064" layer="1"/>
-<via x="6.35" y="41.91" extent="1-16" drill="0.35"/>
-<wire x1="20.32" y1="41.91" x2="6.35" y2="41.91" width="0.4064" layer="16"/>
+<wire x1="11.43" y1="40.64" x2="9.31" y2="40.64" width="0.4064" layer="1"/>
+<wire x1="6.35" y1="43.6" x2="9.31" y2="40.64" width="0.4064" layer="1"/>
+<via x="11.43" y="40.64" extent="1-16" drill="0.35"/>
+<wire x1="19.05" y1="40.64" x2="20.32" y2="41.91" width="0.4064" layer="16"/>
+<wire x1="11.43" y1="40.64" x2="19.05" y2="40.64" width="0.4064" layer="16"/>
 </signal>
-<signal name="N$2">
+<signal name="GREEN-IN">
 <contactref element="LED-1" pad="4"/>
 <contactref element="R3" pad="1"/>
 <wire x1="13.97" y1="45.3" x2="13.97" y2="52.959" width="0.4064" layer="1"/>
 <wire x1="13.97" y1="52.959" x2="14.351" y2="53.34" width="0.1524" layer="1"/>
 </signal>
-<signal name="N$3">
+<signal name="BLUE-IN">
 <contactref element="LED-1" pad="3"/>
 <contactref element="R4" pad="1"/>
 <wire x1="10.16" y1="45.3" x2="10.16" y2="51.435" width="0.4064" layer="1"/>

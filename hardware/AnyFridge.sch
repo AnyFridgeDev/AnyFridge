@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -1305,6 +1305,60 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </device>
 </devices>
 </deviceset>
+<deviceset name="22OHM" urn="urn:adsk.eagle:component:39755/2" prefix="R" library_version="2">
+<description>&lt;h3&gt;22Ω resistor&lt;/h3&gt;
+&lt;p&gt;A resistor is a passive two-terminal electrical component that implements electrical resistance as a circuit element. Resistors act to reduce current flow, and, at the same time, act to lower voltage levels within circuits. - Wikipedia&lt;/p&gt;</description>
+<gates>
+<gate name="G$1" symbol="RESISTOR" x="0" y="0"/>
+</gates>
+<devices>
+<device name="-0402-1/10W-1%" package="0402">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:39657/2"/>
+</package3dinstances>
+<technologies>
+<technology name="">
+<attribute name="PROD_ID" value="RES-12427"/>
+<attribute name="VALUE" value="22Ω"/>
+</technology>
+</technologies>
+</device>
+<device name="-0603-1/10W-1%" package="0603">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:41389018/1"/>
+</package3dinstances>
+<technologies>
+<technology name="">
+<attribute name="PROD_ID" value="RES-08698"/>
+<attribute name="VALUE" value="22Ω"/>
+</technology>
+</technologies>
+</device>
+<device name="-0402T-1/16W-1%" package="0402-TIGHT">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:41389023/1"/>
+</package3dinstances>
+<technologies>
+<technology name="">
+<attribute name="PROD_ID" value="RES-12427" constant="no"/>
+<attribute name="VALUE" value="22Ω" constant="no"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
 </devicesets>
 </library>
 <library name="testpad" urn="urn:adsk.eagle:library:385">
@@ -2467,7 +2521,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <schematic_group name="MOTION-SENSOR" titleSize="2.54"/>
 <schematic_group name="MCU" titleSize="2.54"/>
 <schematic_group name="SCANNER" titleSize="2.54"/>
-<schematic_group name="RED" titleSize="2.54"/>
+<schematic_group name="LED" titleSize="2.54"/>
 </groups>
 <parts>
 <part name="FRAME1" library="Frame" deviceset="FRAME-LETTER" device="NO_PACKAGE" package3d_urn="urn:adsk.eagle:package:41384587/3"/>
@@ -2482,6 +2536,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="TP_RX" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="TP" device="PAD1-13" package3d_urn="urn:adsk.eagle:package:27946/1"/>
 <part name="TP_3.3V" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="TP" device="PAD1-13" package3d_urn="urn:adsk.eagle:package:27946/1"/>
 <part name="R2" library="SparkFun-Resistors" deviceset="68OHM" device="-0603-1/10W-1%"/>
+<part name="R3" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="22OHM" device="-0603-1/10W-1%" package3d_urn="urn:adsk.eagle:package:41389018/1" value="22Ω"/>
+<part name="R4" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="22OHM" device="-0603-1/10W-1%" package3d_urn="urn:adsk.eagle:package:41389018/1" value="22Ω"/>
 </parts>
 <sheets>
 <sheet>
@@ -2497,9 +2553,9 @@ ALTERNATIVELY AN ONBOARD HEADER CAN BE USED FOR LIPO.</text>
 <attribute name="DRAWING_NAME" x="162.814" y="17.78" size="2.7432" layer="94" font="vector"/>
 <attribute name="REV" x="236.22" y="6.604" size="2.7432" layer="94" font="vector"/>
 </instance>
-<instance part="LED-1" gate="A" x="35.56" y="83.82" smashed="yes" grouprefs="RED">
-<attribute name="NAME" x="51.1556" y="95.4786" size="2.0828" layer="95" ratio="6" rot="SR0"/>
-<attribute name="VALUE" x="50.5206" y="92.9386" size="2.0828" layer="96" ratio="6" rot="SR0"/>
+<instance part="LED-1" gate="A" x="17.78" y="86.36" smashed="yes" grouprefs="LED">
+<attribute name="NAME" x="25.7556" y="98.0186" size="2.0828" layer="95" ratio="6" rot="SR0"/>
+<attribute name="VALUE" x="25.1206" y="95.4786" size="2.0828" layer="96" ratio="6" rot="SR0"/>
 </instance>
 <instance part="SENS-1" gate="G$1" x="187.96" y="81.28" smashed="yes" rot="MR0" grouprefs="MOTION-SENSOR">
 <attribute name="NAME" x="193.04" y="90.17" size="1.27" layer="95" rot="MR0"/>
@@ -2537,9 +2593,17 @@ ALTERNATIVELY AN ONBOARD HEADER CAN BE USED FOR LIPO.</text>
 <attribute name="NAME" x="64.77" y="44.45" size="1.778" layer="95"/>
 <attribute name="TP_SIGNAL_NAME" x="67.31" y="41.91" size="1.778" layer="97"/>
 </instance>
-<instance part="R2" gate="G$1" x="81.28" y="81.28" smashed="yes">
-<attribute name="NAME" x="81.28" y="77.47" size="1.778" layer="95" font="vector" align="bottom-center"/>
-<attribute name="VALUE" x="86.36" y="77.216" size="1.778" layer="96" font="vector" align="top-center"/>
+<instance part="R2" gate="G$1" x="63.5" y="78.74" smashed="yes">
+<attribute name="NAME" x="63.5" y="80.01" size="1.778" layer="95" font="vector" align="bottom-center"/>
+<attribute name="VALUE" x="68.58" y="77.216" size="1.778" layer="96" font="vector" align="top-center"/>
+</instance>
+<instance part="R3" gate="G$1" x="63.5" y="93.98" smashed="yes">
+<attribute name="NAME" x="63.5" y="95.504" size="1.778" layer="95" font="vector" align="bottom-center"/>
+<attribute name="VALUE" x="63.5" y="92.456" size="1.778" layer="96" font="vector" align="top-center"/>
+</instance>
+<instance part="R4" gate="G$1" x="63.5" y="86.36" smashed="yes">
+<attribute name="NAME" x="63.5" y="87.884" size="1.778" layer="95" font="vector" align="bottom-center"/>
+<attribute name="VALUE" x="63.5" y="84.836" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
 </instances>
 <busses>
@@ -2564,8 +2628,8 @@ ALTERNATIVELY AN ONBOARD HEADER CAN BE USED FOR LIPO.</text>
 </segment>
 <segment>
 <pinref part="LED-1" gate="A" pin="2"/>
-<wire x1="35.56" y1="83.82" x2="33.02" y2="83.82" width="0.1524" layer="91" grouprefs="RED"/>
-<label x="33.02" y="83.82" size="1.778" layer="95" rot="R180" xref="yes" grouprefs="RED"/>
+<wire x1="17.78" y1="86.36" x2="15.24" y2="86.36" width="0.1524" layer="91" grouprefs="LED"/>
+<label x="15.24" y="86.36" size="1.778" layer="95" rot="R180" xref="yes" grouprefs="LED"/>
 </segment>
 <segment>
 <pinref part="R1" gate="G$1" pin="1"/>
@@ -2629,23 +2693,11 @@ ALTERNATIVELY AN ONBOARD HEADER CAN BE USED FOR LIPO.</text>
 <label x="116.84" y="119.38" size="1.27" layer="95" rot="R180" xref="yes" grouprefs="MCU"/>
 </segment>
 </net>
-<net name="RED-IN" class="0">
-<segment>
-<pinref part="ESP-1" gate="G$1" pin="33"/>
-<wire x1="119.38" y1="106.68" x2="116.84" y2="106.68" width="0.1524" layer="91" grouprefs="MCU"/>
-<label x="116.84" y="106.68" size="1.27" layer="95" rot="R180" xref="yes" grouprefs="MCU"/>
-</segment>
-<segment>
-<wire x1="86.36" y1="81.28" x2="88.9" y2="81.28" width="0.1524" layer="91"/>
-<label x="88.9" y="81.28" size="1.778" layer="95" xref="yes"/>
-<pinref part="R2" gate="G$1" pin="2"/>
-</segment>
-</net>
 <net name="BLUE" class="0">
 <segment>
-<pinref part="LED-1" gate="A" pin="3"/>
-<label x="78.74" y="83.82" size="1.27" layer="95" xref="yes" grouprefs="RED"/>
-<wire x1="76.2" y1="83.82" x2="78.74" y2="83.82" width="0.1524" layer="91" grouprefs="RED"/>
+<label x="71.12" y="86.36" size="1.27" layer="95" xref="yes" grouprefs="LED"/>
+<pinref part="R4" gate="G$1" pin="2"/>
+<wire x1="68.58" y1="86.36" x2="71.12" y2="86.36" width="0.1524" layer="91" grouprefs="LED"/>
 </segment>
 <segment>
 <pinref part="ESP-1" gate="G$1" pin="12"/>
@@ -2655,9 +2707,9 @@ ALTERNATIVELY AN ONBOARD HEADER CAN BE USED FOR LIPO.</text>
 </net>
 <net name="GREEN" class="0">
 <segment>
-<pinref part="LED-1" gate="A" pin="4"/>
-<wire x1="76.2" y1="86.36" x2="78.74" y2="86.36" width="0.1524" layer="91" grouprefs="RED"/>
-<label x="78.74" y="86.36" size="1.27" layer="95" xref="yes" grouprefs="RED"/>
+<label x="71.12" y="93.98" size="1.27" layer="95" xref="yes" grouprefs="LED"/>
+<wire x1="68.58" y1="93.98" x2="71.12" y2="93.98" width="0.1524" layer="91" grouprefs="LED"/>
+<pinref part="R3" gate="G$1" pin="2"/>
 </segment>
 <segment>
 <pinref part="ESP-1" gate="G$1" pin="27"/>
@@ -2733,6 +2785,32 @@ ALTERNATIVELY AN ONBOARD HEADER CAN BE USED FOR LIPO.</text>
 <segment>
 <pinref part="LED-1" gate="A" pin="1"/>
 <pinref part="R2" gate="G$1" pin="1"/>
+<wire x1="58.42" y1="78.74" x2="58.42" y2="83.82" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="RED" class="0">
+<segment>
+<wire x1="68.58" y1="78.74" x2="71.12" y2="78.74" width="0.1524" layer="91"/>
+<label x="71.12" y="78.74" size="1.27" layer="95" xref="yes"/>
+<pinref part="R2" gate="G$1" pin="2"/>
+</segment>
+<segment>
+<pinref part="ESP-1" gate="G$1" pin="33"/>
+<wire x1="119.38" y1="106.68" x2="116.84" y2="106.68" width="0.1524" layer="91" grouprefs="MCU"/>
+<label x="116.84" y="106.68" size="1.27" layer="95" rot="R180" xref="yes" grouprefs="MCU"/>
+</segment>
+</net>
+<net name="N$2" class="0">
+<segment>
+<pinref part="LED-1" gate="A" pin="4"/>
+<pinref part="R3" gate="G$1" pin="1"/>
+<wire x1="58.42" y1="93.98" x2="58.42" y2="88.9" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$3" class="0">
+<segment>
+<pinref part="LED-1" gate="A" pin="3"/>
+<pinref part="R4" gate="G$1" pin="1"/>
 </segment>
 </net>
 </nets>

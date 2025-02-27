@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -2432,14 +2432,14 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="120OHM" prefix="R">
-<description>&lt;h3&gt;120Ω resistor&lt;/h3&gt;
+<deviceset name="68OHM" prefix="R">
+<description>&lt;h3&gt;68Ω resistor&lt;/h3&gt;
 &lt;p&gt;A resistor is a passive two-terminal electrical component that implements electrical resistance as a circuit element. Resistors act to reduce current flow, and, at the same time, act to lower voltage levels within circuits. - Wikipedia&lt;/p&gt;</description>
 <gates>
 <gate name="G$1" symbol="RESISTOR" x="0" y="0"/>
 </gates>
 <devices>
-<device name="" package="0603">
+<device name="-0603-1/10W-1%" package="0603">
 <connects>
 <connect gate="G$1" pin="1" pad="1"/>
 <connect gate="G$1" pin="2" pad="2"/>
@@ -2481,7 +2481,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="TP_TX" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="TP" device="PAD1-13" package3d_urn="urn:adsk.eagle:package:27946/1"/>
 <part name="TP_RX" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="TP" device="PAD1-13" package3d_urn="urn:adsk.eagle:package:27946/1"/>
 <part name="TP_3.3V" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="TP" device="PAD1-13" package3d_urn="urn:adsk.eagle:package:27946/1"/>
-<part name="R2" library="SparkFun-Resistors" deviceset="120OHM" device=""/>
+<part name="R2" library="SparkFun-Resistors" deviceset="68OHM" device="-0603-1/10W-1%"/>
 </parts>
 <sheets>
 <sheet>
@@ -2538,8 +2538,8 @@ ALTERNATIVELY AN ONBOARD HEADER CAN BE USED FOR LIPO.</text>
 <attribute name="TP_SIGNAL_NAME" x="67.31" y="41.91" size="1.778" layer="97"/>
 </instance>
 <instance part="R2" gate="G$1" x="81.28" y="81.28" smashed="yes">
-<attribute name="NAME" x="81.28" y="77.724" size="1.778" layer="95" font="vector" align="bottom-center"/>
-<attribute name="VALUE" x="81.28" y="77.216" size="1.778" layer="96" font="vector" align="top-center"/>
+<attribute name="NAME" x="81.28" y="77.47" size="1.778" layer="95" font="vector" align="bottom-center"/>
+<attribute name="VALUE" x="86.36" y="77.216" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
 </instances>
 <busses>
@@ -2636,9 +2636,9 @@ ALTERNATIVELY AN ONBOARD HEADER CAN BE USED FOR LIPO.</text>
 <label x="116.84" y="106.68" size="1.27" layer="95" rot="R180" xref="yes" grouprefs="MCU"/>
 </segment>
 <segment>
-<pinref part="R2" gate="G$1" pin="2"/>
 <wire x1="86.36" y1="81.28" x2="88.9" y2="81.28" width="0.1524" layer="91"/>
 <label x="88.9" y="81.28" size="1.778" layer="95" xref="yes"/>
+<pinref part="R2" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="BLUE" class="0">

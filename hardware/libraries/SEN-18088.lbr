@@ -79,8 +79,8 @@
 <wire x1="44.45" y1="-25.4" x2="0" y2="-25.4" width="0.127" layer="21"/>
 <wire x1="0" y1="-25.4" x2="0" y2="0" width="0.127" layer="21"/>
 <pad name="GND" x="6.35" y="-24.13" drill="1.016" diameter="2.032"/>
-<pad name="RX" x="8.89" y="-24.13" drill="1.016" diameter="2.032"/>
-<pad name="TX" x="11.43" y="-24.13" drill="1.016" diameter="2.032"/>
+<pad name="RX" x="11.43" y="-24.13" drill="1.016" diameter="2.032"/>
+<pad name="TX" x="8.89" y="-24.13" drill="1.016" diameter="2.032"/>
 <pad name="3.3V" x="13.97" y="-24.13" drill="1.016" diameter="2.032"/>
 <pad name="TRIG" x="16.51" y="-24.13" drill="1.016" diameter="2.032"/>
 <pad name="STAT" x="19.05" y="-24.13" drill="1.016" diameter="2.032"/>

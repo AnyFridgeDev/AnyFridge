@@ -47,9 +47,9 @@ void test_reticle(){
 }
 
 void test_light(){
-    TEST_ASSERT_TRUE(scanner.lightOff());
-    delay(500);
     TEST_ASSERT_TRUE(scanner.lightOn());
+    delay(500);
+    TEST_ASSERT_TRUE(scanner.lightOff());
 }
 
 void setup()

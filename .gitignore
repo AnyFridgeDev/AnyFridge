@@ -175,3 +175,4 @@ cython_debug/
 *.b#*
 *.l#*
 *.swp
+deliverables/

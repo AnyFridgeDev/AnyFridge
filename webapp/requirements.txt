@@ -1,0 +1,6 @@
+fastapi
+gradio
+pytest
+uvicorn
+httpx
+gradio[oauth]

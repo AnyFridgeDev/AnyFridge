@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="5" altunitdist="mil" altunit="mil"/>
+<grid distance="0.000000123031" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="5" altunitdist="mil" altunit="mil"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -32,7 +32,7 @@
 <layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
@@ -204,12 +204,11 @@
 <wire x1="78.41" y1="5" x2="78.41" y2="64.84" width="0" layer="20"/>
 <wire x1="78.41" y1="64.84" x2="73.41" y2="69.84" width="0" layer="20" curve="90"/>
 <text x="5.08" y="63.5" size="1.778" layer="21" rot="R270">GND</text>
-<text x="7.62" y="63.5" size="1.778" layer="21" rot="R270">TX</text>
 <text x="10.16" y="63.5" size="1.778" layer="21" rot="R270">RX</text>
 <text x="12.7" y="63.5" size="1.778" layer="21" rot="R270">3v3</text>
 <text x="5.08" y="46.99" size="1.778" layer="21">RGB LED</text>
 <text x="63.5" y="53.34" size="1.778" layer="21">Mode Toggle</text>
-<text x="8.89" y="20.32" size="1.524" layer="21" rot="SR270" align="center">Designed by:
+<text x="9.136478125" y="22.43605625" size="1.27" layer="21" rot="SR270" align="center">Designed by:
 Ethan Anderson,
 Isac Fletcher,
 Caden Allen</text>
@@ -218,11 +217,12 @@ Caden Allen</text>
 <text x="20.32" y="63.5" size="1.778" layer="21">SparkFun ESP32 Thing Plus</text>
 <text x="5.08" y="7.62" size="1.778" layer="21">Motion
 Sensor</text>
-<text x="7.62" y="40.64" size="1.778" layer="21" rot="SR270">AnyFridge
+<text x="9.730625" y="38.57175625" size="1.27" layer="21" rot="SR270">AnyFridge
 V1.0</text>
 <hole x="44.45" y="7.62" drill="1"/>
 <hole x="46.99" y="57.15" drill="1"/>
 <hole x="6.35" y="33.02" drill="1"/>
+<text x="7.62" y="63.5" size="1.778" layer="25" rot="R270">TX</text>
 </plain>
 <libraries>
 <library name="ESP32">
@@ -834,7 +834,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </autorouter>
 <elements>
 <element name="ESP-1" library="ESP32" package="ESP32" value="ESP32" x="20.32" y="2.54" smashed="yes">
-<attribute name="NAME" x="17.78" y="62.23" size="1.27" layer="25"/>
+<attribute name="NAME" x="17.78" y="62.23" size="1.27" layer="27"/>
 <attribute name="VALUE" x="20.32" y="0" size="1.27" layer="27"/>
 </element>
 <element name="FRAME1" library="Frame" package="DUMMY" package3d_urn="urn:adsk.eagle:package:41384587/3" value="FRAME-LETTERNO_PACKAGE" x="43.18" y="2.54" smashed="yes">
@@ -878,7 +878,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="VALUE" x="61.46" y="55.94" size="1.27" layer="27" align="top-left"/>
 </element>
 <element name="TP_GND" library="testpad" library_urn="urn:adsk.eagle:library:385" package="P1-13" package3d_urn="urn:adsk.eagle:package:27946/1" value="TPPAD1-13" x="6.35" y="66.04" smashed="yes" rot="R90">
-<attribute name="NAME" x="6.35" y="68.834" size="1.27" layer="25" ratio="10" rot="R90"/>
+<attribute name="NAME" x="6.35" y="68.834" size="1.27" layer="27" ratio="10" rot="R90"/>
 <attribute name="POPULARITY" value="12" x="6.35" y="66.04" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="TP_SIGNAL_NAME" value="" x="6.35" y="66.04" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="2.54" y="66.04" size="0.0254" layer="28" rot="MR270"/>
@@ -890,13 +890,13 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="VALUE" x="7.62" y="63.5" size="0.0254" layer="28" rot="MR270"/>
 </element>
 <element name="TP_RX" library="testpad" library_urn="urn:adsk.eagle:library:385" package="P1-13" package3d_urn="urn:adsk.eagle:package:27946/1" value="TPPAD1-13" x="11.43" y="66.04" smashed="yes" rot="R90">
-<attribute name="NAME" x="11.43" y="68.834" size="1.27" layer="25" ratio="10" rot="R90"/>
+<attribute name="NAME" x="11.43" y="68.834" size="1.27" layer="27" ratio="10" rot="R90"/>
 <attribute name="POPULARITY" value="12" x="11.43" y="66.04" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="TP_SIGNAL_NAME" value="" x="11.43" y="66.04" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="11.43" y="64.77" size="0.0254" layer="27" rot="R180"/>
 </element>
 <element name="TP_3.3V" library="testpad" library_urn="urn:adsk.eagle:library:385" package="P1-13" package3d_urn="urn:adsk.eagle:package:27946/1" value="TPPAD1-13" x="13.97" y="66.04" smashed="yes" rot="R90">
-<attribute name="NAME" x="13.97" y="68.834" size="1.27" layer="25" ratio="10" rot="R90"/>
+<attribute name="NAME" x="13.97" y="68.834" size="1.27" layer="27" ratio="10" rot="R90"/>
 <attribute name="POPULARITY" value="12" x="13.97" y="66.04" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="TP_SIGNAL_NAME" value="" x="13.97" y="66.04" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="10.16" y="64.77" size="0.0254" layer="27" rot="R90"/>

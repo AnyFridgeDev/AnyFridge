@@ -20,8 +20,8 @@ const char *networkName = "iPhone";
 const char *networkPswd = "password";
 
 // --- Domain/Port for AnyFridge endpoint ---
-const char *host        = "192.168.12.104";
-const int hostPort      = 8080;
+const char *host        = "172.20.10.4";
+const int hostPort      = 5000;
 
 enum mode {ADDITION, SUBTRACTION};
 
@@ -45,13 +45,11 @@ void setup()
     unsigned long startAttemptTime = millis();
     while (WiFi.status() != WL_CONNECTED)
     {
-      delay(1000);
+      delay(250);
     }
 
+    // Assigned IP Address
     Serial.println(WiFi.localIP());
-
-    // Check final WiFi status:
-    Serial.println(WiFi.status());
 
 }
 
@@ -67,18 +65,20 @@ bool post_code(char *code, mode mode)
 
     // Define the URL and the payload of the POST request
     String endpoint = "/update";
+    String user = "test_user";
     String payload;
-    String method;
+    String action;
+
+    if (mode == ADDITION) action = "POST";
+    else action = "DELETE";
 
     JsonDocument doc;
     doc["upc_code"] = String(code);
-    doc["user_id"] = "test_user";
+    doc["user_id"] = user;
+    doc["action"] = action;
     serializeJson(doc, payload);
 
-    if (mode == ADDITION) method = "POST";
-    else method = "DELETE";
-
-    String request = (method + " " + endpoint + " HTTP/1.1\r\n" +
+    String request = ("POST " + endpoint + " HTTP/1.1\r\n" +
                      "Host: " + host + "\r\n" +
                      "Content-Type: application/json\r\n" +
                      "Content-Length: " + payload.length() + "\r\n" +

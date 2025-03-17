@@ -1,10 +1,18 @@
+/*
+  By: AnyFridge Team
+  Term: Spring 2025
+ 
+  This example demonstrates how to use the onboard WiFi functionality.
+
+*/
+
 #include <Arduino.h>
 #include <unity.h>
 #include <WiFi.h>
 
 // --- Replace these with your network credentials ---
-const char *networkName = "S23 Phone";
-const char *networkPswd = "jody3149";
+const char *networkName = "iPhone";
+const char *networkPswd = "password";
 
 // --- Domain/Port for your test request ---
 const char *hostDomain = "www.google.com";
@@ -15,6 +23,7 @@ const int hostPort     = 80;
 // ---------------------------------------------------------------------------
 void test_wifi_connection(void)
 {
+  WiFi.mode(WIFI_STA);
   WiFi.begin(networkName, networkPswd);
   
   // Wait up to 10 seconds for connection:
@@ -129,20 +138,26 @@ void test_any_fridge_website_ping(){
 // ---------------------------------------------------------------------------
 void setup()
 {
-    // Begin serial for debug prints:
-    Serial.begin(115200);
-    delay(5000);
+  Serial.begin(115200);
 
-    // Initialize Unity:
-    UNITY_BEGIN();
+  // Wait for USB seems to not work
+  while (!Serial) {
+      delay(100); // Wait for native USB
+  }
 
-    // Run Tests:
-    RUN_TEST(test_wifi_connection);
-    RUN_TEST(test_http_get_request);
-    RUN_TEST(test_any_fridge_website_ping);
+  // Extra 5-sec delay to allow the user to open the Serial Monitor
+  delay(5000);
 
-    // Finish Unity and do not rerun:
-UNITY_END();
+  // Initialize Unity:
+  UNITY_BEGIN();
+
+  // Run Tests:
+  RUN_TEST(test_wifi_connection);
+  RUN_TEST(test_http_get_request);
+  RUN_TEST(test_any_fridge_website_ping);
+
+  // Finish Unity and do not rerun:
+  UNITY_END();
 }
 
 void loop()

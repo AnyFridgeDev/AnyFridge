@@ -28,4 +28,4 @@ with gr.Blocks() as ui:
     user_id.submit(get_user_data_df, inputs=user_id, outputs=upc_codes)
 
 if __name__ == "__main__":
-    ui.launch()
+    ui.launch(server_name="0.0.0.0", server_port=8080)

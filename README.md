@@ -21,10 +21,8 @@ This repository is organized into the following sections:
         
         libraries/ - Stores custom libraries containing custom components in the schematics
     
-    software/ - Stores firmware and web application code for the system
+    software/ - Contains custom firmware written for the ESP32
         
-        firmware/ - Contains custom firmware written for the ESP32
-
-        web/ - Contains Python web app to handle inventory tracking management
+    webapp/ - Contains Python web app to handle inventory tracking management
     
     docs/ - Stores documentation about the project hardware and software

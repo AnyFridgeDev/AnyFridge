@@ -68,13 +68,17 @@ bool post_code(char *code, mode mode)
     // Define the URL and the payload of the POST request
     String endpoint = "/update";
     String payload;
+    String method;
 
     JsonDocument doc;
     doc["upc_code"] = String(code);
     doc["user_id"] = "test_user";
     serializeJson(doc, payload);
 
-    String request = ("POST " + endpoint + " HTTP/1.1\r\n" +
+    if (mode == ADDITION) method = "POST";
+    else method = "DELETE";
+
+    String request = (method + " " + endpoint + " HTTP/1.1\r\n" +
                      "Host: " + host + "\r\n" +
                      "Content-Type: application/json\r\n" +
                      "Content-Length: " + payload.length() + "\r\n" +

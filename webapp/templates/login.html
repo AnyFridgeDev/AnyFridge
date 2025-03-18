@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h2>Enter User ID</h2>
+    {% if error %}
+        <div class="ui red message">{{ error }}</div>
+    {% endif %}
+    <form action="/" method="get" class="ui form">
+        <div class="field">
+            <label>User ID</label>
+            <input type="text" name="user_id" placeholder="User ID" required>
+        </div>
+        <button class="ui button" type="submit">Submit</button>
+    </form>
+{% endblock %}

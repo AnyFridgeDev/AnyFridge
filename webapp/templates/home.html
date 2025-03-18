@@ -1,19 +1,21 @@
 {% extends "layout.html" %}
 
+
 {% block content %}
     <h2>Dashboard</h2>
     <h3>Items</h3>
     <div class="ui divided items">
+        {% for item in items %}
         <div class="item">
             <div class="image">
-                <img src="/images/wireframe/image.png">
+                <img src="{{ item.image_url }}" alt="Image of {{ item.name }}">
             </div>
             <div class="content">
-                <a class="header">Item Name: {{item_name}}</a>
+                <a class="header">Item Name: {{ item.name }}</a>
                 <div class="description">
                     <p>
-                        Date Added: {{item_date_added}}<br>
-                        Expiration Date: {{item_expiration_date}}<br>
+                        Date Added: {{ item.date_added }}<br>
+                        Expiration Date: {{ item.expiration_date }}<br>
                     </p>
                 </div>
                 <div class="extra">
@@ -24,28 +26,8 @@
                 </div>
             </div>
         </div>
-        <div class="item">
-            <div class="image">
-                <img src="/images/wireframe/image.png">
-            </div>
-            <div class="content">
-                <a class="header">Item Name: {{item_name}}</a>
-                <div class="description">
-                    <p>
-                        Date Added: {{item_date_added}}<br>
-                        Expiration Date: {{item_expiration_date}}<br>
-                    </p>
-                </div>
-                <div class="extra">
-                    <div class="ui right floated negative labeled icon button">
-                        Delete
-                        <i class="minus icon"></i> 
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
-    {{ items }}
 {% endblock %}
 
 

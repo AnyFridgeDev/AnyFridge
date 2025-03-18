@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h2>Dashboard</h2>
+    <h3>Items</h3>
+
+    <div class="ui input">
+        <input type="text" placeholder="Enter UPC manually...">
+        <button class="ui button">
+            Add
+        </button>
+    </div>
+    <table class="ui celled table">
+        <thead>
+          <tr><th>Picture</th>
+          <th>Name</th>
+          <th>Date Added</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td data-label="Name">pic</td>
+            <td data-label="Age">Tesco Spaghetti</td>
+            <td data-label="Job">2/14/2023</td>
+          </tr>
+        </tbody>
+    {{ items }}
+{% endblock %}

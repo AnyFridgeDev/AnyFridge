@@ -3,4 +3,5 @@ gradio
 pytest
 uvicorn
 httpx
+jinja2
 gradio[oauth]

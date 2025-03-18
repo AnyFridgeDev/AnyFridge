@@ -3,25 +3,49 @@
 {% block content %}
     <h2>Dashboard</h2>
     <h3>Items</h3>
-
-    <div class="ui input">
-        <input type="text" placeholder="Enter UPC manually...">
-        <button class="ui button">
-            Add
-        </button>
+    <div class="ui divided items">
+        <div class="item">
+            <div class="image">
+                <img src="/images/wireframe/image.png">
+            </div>
+            <div class="content">
+                <a class="header">Item Name: {{item_name}}</a>
+                <div class="description">
+                    <p>
+                        Date Added: {{item_date_added}}<br>
+                        Expiration Date: {{item_expiration_date}}<br>
+                    </p>
+                </div>
+                <div class="extra">
+                    <div class="ui right floated negative labeled icon button">
+                        Delete
+                        <i class="minus icon"></i> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="image">
+                <img src="/images/wireframe/image.png">
+            </div>
+            <div class="content">
+                <a class="header">Item Name: {{item_name}}</a>
+                <div class="description">
+                    <p>
+                        Date Added: {{item_date_added}}<br>
+                        Expiration Date: {{item_expiration_date}}<br>
+                    </p>
+                </div>
+                <div class="extra">
+                    <div class="ui right floated negative labeled icon button">
+                        Delete
+                        <i class="minus icon"></i> 
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <table class="ui celled table">
-        <thead>
-          <tr><th>Picture</th>
-          <th>Name</th>
-          <th>Date Added</th>
-        </tr></thead>
-        <tbody>
-          <tr>
-            <td data-label="Name">pic</td>
-            <td data-label="Age">Tesco Spaghetti</td>
-            <td data-label="Job">2/14/2023</td>
-          </tr>
-        </tbody>
     {{ items }}
 {% endblock %}
+
+

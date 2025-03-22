@@ -6,8 +6,8 @@ from request_handler import anyfridge_request_handler
 import random 
 
 
-class TestAnyFridgeAPI(unittest.TestCase):
-    """Test cases for the AnyFridge FastAPI server"""
+class TestRequestHandling(unittest.TestCase):
+    """Test cases for the request handling API"""
 
     @staticmethod
     def code_in_scan(user_data, upc_code):

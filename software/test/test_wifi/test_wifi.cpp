@@ -18,9 +18,6 @@ const char *networkPswd = "password";
 const char *hostDomain = "www.google.com";
 const int hostPort     = 80;
 
-// ---------------------------------------------------------------------------
-// Test 1: Connect to WiFi
-// ---------------------------------------------------------------------------
 void test_wifi_connection(void)
 {
   WiFi.mode(WIFI_STA);
@@ -41,9 +38,7 @@ void test_wifi_connection(void)
   );
 }
 
-// ---------------------------------------------------------------------------
-// Test 2: Make HTTP GET request to confirm connectivity
-// ---------------------------------------------------------------------------
+
 void test_http_get_request(void)
 {
   // Assume we are already connected to WiFi from previous test.
@@ -133,9 +128,7 @@ void test_any_fridge_website_ping(){
     client.stop();
 }
 
-// ---------------------------------------------------------------------------
-// Arduino Setup & Loop for Unity Tests
-// ---------------------------------------------------------------------------
+
 void setup()
 {
   Serial.begin(115200);
@@ -162,5 +155,5 @@ void setup()
 
 void loop()
 {
-  // Empty. Tests run once in setup().
+
 }

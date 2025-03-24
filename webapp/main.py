@@ -1,8 +1,11 @@
 from fastapi import FastAPI, Request, HTTPException, Query
 from fastapi.templating import Jinja2Templates
 import httpx
+import aiofiles
 import subprocess
 import time
+import os
+import json
 
 app = FastAPI()
 
@@ -19,17 +22,29 @@ async def read_items(request: Request, user_id: str = Query(None)):
     if not user_id:
         return templates.TemplateResponse("login.html", {"request": request})
     
-    process = start_request_handler()
-    try:
-        async with httpx.AsyncClient(timeout=5.0) as client:
-            response = await client.get(f"http://127.0.0.1:5000/get/{user_id}")
-            response.raise_for_status()
-            user_data = response.json()
-            items = user_data.get("items", [])
-    except (httpx.HTTPStatusError, httpx.RequestError) as exc:
-        process.terminate()  # Ensure the server is stopped after the request
-        return templates.TemplateResponse("login.html", {"request": request, "error": "Invalid user ID or request timed out"})
-    finally:
-        process.terminate()  # Ensure the server is stopped after the request
+    user_file_path = os.path.join("data", f"{user_id}.json")
+    if not os.path.exists(user_file_path):
+        user_file_path = os.path.join("data", "test_user.json")
+        user_id = "test_user"
     
-    return templates.TemplateResponse("home.html", {"request": request, "items": items})
+    async with aiofiles.open(user_file_path, "r") as user_file:
+        user_data = json.loads(await user_file.read())
+    
+    scans = user_data.get("scans", [])
+    upc_codes = [scan["upc_code"] for scan in scans]
+    
+    items = []
+    async with httpx.AsyncClient() as client:
+        for upc_code in upc_codes:
+            response = await client.get(f"https://world.openfoodfacts.net/api/v2/product/{upc_code}?fields=product_name,image_url,expiration_date")
+            if response.status_code == 200:
+                product_data = response.json().get("product", {})
+                print(f"Fetched data for UPC {upc_code}: {product_data}")
+                items.append({
+                    "product_name": product_data.get("product_name"),
+                    "image_url": product_data.get("image_url"),
+                    "expiration_date": product_data.get("expiration_date"),
+                    "date_added": time.strftime("%m/%d/%y %H:%M")
+                })
+    
+    return templates.TemplateResponse("home.html", {"request": request, "items": items, "user_id": user_id})

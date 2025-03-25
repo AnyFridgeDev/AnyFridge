@@ -19,7 +19,7 @@
                     </p>
                 </div>
                 <div class="extra">
-                    <div class="ui right floated negative labeled icon button">
+                    <div class="ui right floated negative labeled icon button" onclick="deleteItem('{{ user_id }}', '{{ item.upc_code }}', '{{ loop.index0 }}')">
                         Delete
                         <i class="minus icon"></i> 
                     </div>
@@ -28,6 +28,41 @@
         </div>
         {% endfor %}
     </div>
+
+
+
+
+    <script>
+        // Define the deleteItem function globally
+        async function deleteItem(userId, code, index) {
+            const formData = new FormData();
+            formData.append("user_id", userId);
+            formData.append("code", code);
+            formData.append("action", "DELETE");
+            formData.append("index", index);
+    
+            const response = await fetch("http://127.0.0.1:5000/api/update", { // Updated port to 5000
+                method: "POST",
+                body: formData,
+            });
+            
+            if (response.ok) {
+                alert("Item deleted successfully!");
+                location.reload();
+            } else {
+                const error = await response.json();
+                alert(`Error: ${error.error}`);
+            }
+        }
+    
+        document.addEventListener("DOMContentLoaded", () => {
+            // Additional DOM-related logic can go here if needed
+        });
+    </script>
+
+    
 {% endblock %}
+
+
 
 

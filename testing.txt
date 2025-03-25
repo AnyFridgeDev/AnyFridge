@@ -80,3 +80,21 @@ The test uses a FastAPI test client.
 
 Instructions:
 1. Run the command: `python -m unittest tests/test_request_handling.py`
+
+---Integration Test--
+Navigate to the `AnyFridge/` folder.
+
+--Test System Integration--
+A sample program has been provided to test the scanning, WiFi, and web request
+components of the device. It is to be used in conjunction with the request handler
+and gradio test ui to confirm that codes are being appropriately scanned and sent over the network.
+
+Instructions:
+1. Edit the WiFi name, network passwords, and host address
+	`vim software/test/test_integration/test_integration.cpp`
+	Change `networkName` and `networkPswd` (smart phone hotspots work really well)
+    Change `host` to point to designated machine on the same network that will serve request handler and UI
+2. Start the request handler on designated machine: `python3 webapp/request_handler.py`
+3. Start the gradio debugging UI on designated machine: `gradio webapp/ui.py`
+4. Run the test
+	`pio test -f test_integration` 

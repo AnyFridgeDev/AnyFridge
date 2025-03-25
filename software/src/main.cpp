@@ -1,11 +1,40 @@
 /*
-  By: AnyFridge Team (some code sourced from hoshmandent - https://github.com/hoshmandent/POST-request-Arduino)
+  By: AnyFridge Team (POST example referenced at https://github.com/espressif/arduino-esp32/blob/master/libraries/HTTPClient/examples/BasicHttpsClient/BasicHttpsClient.ino)
   Term: Spring 2025 
 */
 
 #include <Arduino.h>
 #include <ArduinoJson.h>
+#include <HTTPClient.h>
 #include <WiFi.h>
+
+// This is a Google Trust Services cert, the root Certificate Authority that
+// signed the server certificate for the demo server https://jigsaw.w3.org in this
+// example. This certificate is valid until Jan 28 00:00:42 2028 GMT
+const char *rootCACertificate = R"string_literal(
+-----BEGIN CERTIFICATE-----
+MIIDejCCAmKgAwIBAgIQf+UwvzMTQ77dghYQST2KGzANBgkqhkiG9w0BAQsFADBX
+MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEQMA4GA1UE
+CxMHUm9vdCBDQTEbMBkGA1UEAxMSR2xvYmFsU2lnbiBSb290IENBMB4XDTIzMTEx
+NTAzNDMyMVoXDTI4MDEyODAwMDA0MlowRzELMAkGA1UEBhMCVVMxIjAgBgNVBAoT
+GUdvb2dsZSBUcnVzdCBTZXJ2aWNlcyBMTEMxFDASBgNVBAMTC0dUUyBSb290IFI0
+MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAE83Rzp2iLYK5DuDXFgTB7S0md+8Fhzube
+Rr1r1WEYNa5A3XP3iZEwWus87oV8okB2O6nGuEfYKueSkWpz6bFyOZ8pn6KY019e
+WIZlD6GEZQbR3IvJx3PIjGov5cSr0R2Ko4H/MIH8MA4GA1UdDwEB/wQEAwIBhjAd
+BgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwDwYDVR0TAQH/BAUwAwEB/zAd
+BgNVHQ4EFgQUgEzW63T/STaj1dj8tT7FavCUHYwwHwYDVR0jBBgwFoAUYHtmGkUN
+l8qJUC99BM00qP/8/UswNgYIKwYBBQUHAQEEKjAoMCYGCCsGAQUFBzAChhpodHRw
+Oi8vaS5wa2kuZ29vZy9nc3IxLmNydDAtBgNVHR8EJjAkMCKgIKAehhxodHRwOi8v
+Yy5wa2kuZ29vZy9yL2dzcjEuY3JsMBMGA1UdIAQMMAowCAYGZ4EMAQIBMA0GCSqG
+SIb3DQEBCwUAA4IBAQAYQrsPBtYDh5bjP2OBDwmkoWhIDDkic574y04tfzHpn+cJ
+odI2D4SseesQ6bDrarZ7C30ddLibZatoKiws3UL9xnELz4ct92vID24FfVbiI1hY
++SW6FoVHkNeWIP0GCbaM4C6uVdF5dTUsMVs/ZbzNnIdCp5Gxmx5ejvEau8otR/Cs
+kGN+hr/W5GvT1tMBjgWKZ1i4//emhA1JG1BbPzoLJQvyEotc03lXjTaCzv8mEbep
+8RqZ7a2CPsgRbuvTPBwcOMBBmuFeU88+FSBX6+7iP0il8b4Z0QFqIwwMHfs/L6K1
+vepuoxtGzi4CZ68zJpiq1UvSqTbFJjtbD4seiMHl
+-----END CERTIFICATE-----
+)string_literal";
+
 #include "HardwareSerial.h"
 HardwareSerial barcodeSerial(1); // UART BUS 1
 
@@ -20,8 +49,8 @@ const char *networkName = "iPhone";
 const char *networkPswd = "password";
 
 // --- Domain/Port for AnyFridge endpoint ---
-const char *host        = "172.20.10.4";
-const int hostPort      = 5000;
+const char *host        = "https://af.ethananderson.dev/api/update";
+const String user       = "isaac";
 
 enum mode {ADDITION, SUBTRACTION};
 
@@ -55,17 +84,20 @@ void setup()
 
 bool post_code(char *code, mode mode)
 {
-    WiFiClient client;
-    bool connected = client.connect(host, hostPort);
+    WiFiClientSecure *client = new WiFiClientSecure;
+    HTTPClient http;
+
+    client->setCACert(rootCACertificate);
+
+    bool connected = http.begin(*client, host);
 
     if (!connected) {
         Serial.println("Connection to server failed");
         return false;
     }
 
-    // Define the URL and the payload of the POST request
-    String endpoint = "/update";
-    String user = "test_user";
+    http.addHeader("Content-Type", "application/json");
+
     String payload;
     String action;
 
@@ -78,30 +110,14 @@ bool post_code(char *code, mode mode)
     doc["action"] = action;
     serializeJson(doc, payload);
 
-    String request = ("POST " + endpoint + " HTTP/1.1\r\n" +
-                     "Host: " + host + "\r\n" +
-                     "Content-Type: application/json\r\n" +
-                     "Content-Length: " + payload.length() + "\r\n" +
-                     "Connection: close\r\n\r\n" +
-                     payload);
-
-    // Send the POST request
-    Serial.print(request);
-    Serial.println();
+    int httpResponseCode = http.POST(payload);
     
-    client.print(request);
+    Serial.print(httpResponseCode);
 
-    // Debugging output: display the response from the server
-    Serial.println("Response:");
-    while(client.available()){
-        String line = client.readStringUntil('\r');
-        Serial.print(line);
-    }
-    
     Serial.println();
 
     // Close the connection
-    client.stop();
+    http.end();
 
     return true;
 }

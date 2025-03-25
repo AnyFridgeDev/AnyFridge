@@ -10,10 +10,15 @@ os.makedirs(DATA_DIR, exist_ok=True)
 def get_user_file(user_id):
     return os.path.join(DATA_DIR, f"{user_id}.json")
 
+def create_user(user_id):
+    filepath = get_user_file(user_id)
+    with open(filepath, "w") as f:
+        json.dump({"scans": []}, f)
+
 def load_user_data(user_id):
     filepath = get_user_file(user_id)
     if not os.path.exists(filepath):
-        open(filepath, "w").close()
+        create_user(user_id)
     
     with open(filepath, "r") as f:
         return json.load(f)

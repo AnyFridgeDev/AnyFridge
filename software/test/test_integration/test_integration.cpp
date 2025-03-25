@@ -5,6 +5,7 @@
 
 #include <Arduino.h>
 #include <ArduinoJson.h>
+#include <unity.h>
 #include <WiFi.h>
 #include "HardwareSerial.h"
 HardwareSerial barcodeSerial(1); // UART BUS 1
@@ -20,10 +21,68 @@ const char *networkName = "iPhone";
 const char *networkPswd = "password";
 
 // --- Domain/Port for AnyFridge endpoint ---
-const char *host        = "172.20.10.4";
+const char *host        = "";
 const int hostPort      = 5000;
 
-enum mode {ADDITION, SUBTRACTION};
+void test_integration()
+{   
+    // attempt to scan a code for up to ten seconds
+    unsigned long startTime = millis();
+    while (millis() - startTime < 10000)
+    {
+        scanner.startScan();
+        delay(500);
+
+        if (scanner.readBarcode(scanBuffer, BUFFER_LEN))
+        {
+            Serial.print("Code found: ");
+            Serial.print(String(scanBuffer));
+            Serial.println();
+            
+            WiFiClient client;
+            bool connected = client.connect(host, hostPort);
+        
+            TEST_ASSERT_TRUE_MESSAGE(
+                connected,
+                "Failed to connect to server (client.connect() returned false)."
+            );
+
+            // Define the URL and the payload of the POST request
+            String endpoint = "/update";
+            String user = "test_user";
+            String payload;
+            String action;
+
+            JsonDocument doc;
+            doc["upc_code"] = String(scanBuffer);
+            doc["user_id"] = user;
+            doc["action"] = action;
+            serializeJson(doc, payload);
+
+            String request = ("POST " + endpoint + " HTTP/1.1\r\n" +
+                            "Host: " + host + "\r\n" +
+                            "Content-Type: application/json\r\n" +
+                            "Content-Length: " + payload.length() + "\r\n" +
+                            "Connection: close\r\n\r\n" +
+                            payload);
+
+            // Send the POST request
+            Serial.print(request);
+            Serial.println();
+            
+            client.print(request);
+
+            // Close the connection
+            client.stop();
+            return;
+        }
+        scanner.stopScan();
+        delay(500);
+    }
+    
+    TEST_ASSERT_NOT_NULL_MESSAGE(NULL, "The scanner timed out.");
+    
+}
 
 void setup()
 {
@@ -51,73 +110,20 @@ void setup()
     // Assigned IP Address
     Serial.println(WiFi.localIP());
 
+    // Extra 5-sec delay to allow the user to open the Serial Monitor
+    delay(5000);
+
+    // Initialize Unity:
+    UNITY_BEGIN();
+
+    // Run Tests:
+    RUN_TEST(test_integration);
+
+    // Finish Unity and do not rerun:
+    UNITY_END();
+
 }
 
-bool post_code(char *code, mode mode)
-{
-    WiFiClient client;
-    bool connected = client.connect(host, hostPort);
-
-    if (!connected) {
-        Serial.println("Connection to server failed");
-        return false;
-    }
-
-    // Define the URL and the payload of the POST request
-    String endpoint = "/update";
-    String user = "test_user";
-    String payload;
-    String action;
-
-    if (mode == ADDITION) action = "POST";
-    else action = "DELETE";
-
-    JsonDocument doc;
-    doc["upc_code"] = String(code);
-    doc["user_id"] = user;
-    doc["action"] = action;
-    serializeJson(doc, payload);
-
-    String request = ("POST " + endpoint + " HTTP/1.1\r\n" +
-                     "Host: " + host + "\r\n" +
-                     "Content-Type: application/json\r\n" +
-                     "Content-Length: " + payload.length() + "\r\n" +
-                     "Connection: close\r\n\r\n" +
-                     payload);
-
-    // Send the POST request
-    Serial.print(request);
-    Serial.println();
-    
-    client.print(request);
-
-    // Debugging output: display the response from the server
-    Serial.println("Response:");
-    while(client.available()){
-        String line = client.readStringUntil('\r');
-        Serial.print(line);
-    }
-    
-    Serial.println();
-
-    // Close the connection
-    client.stop();
-
-    return true;
-}
-
-void loop()
-{ 
-    scanner.startScan();
-    delay(500);
-    if (scanner.readBarcode(scanBuffer, BUFFER_LEN))
-    {
-        Serial.print("Code found: ");
-        Serial.print(String(scanBuffer));
-        Serial.println();
-        post_code(scanBuffer, ADDITION);
-    }
-    scanner.stopScan();
-  
-    delay(500);
+void loop() {
+    // Empty. Tests run once in setup().
 }

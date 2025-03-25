@@ -96,5 +96,5 @@ Instructions:
     Change `host` to point to designated machine on the same network that will serve request handler and UI
 2. Start the request handler on designated machine: `python3 webapp/request_handler.py`
 3. Start the gradio debugging UI on designated machine: `gradio webapp/ui.py`
-4. Run the test
+4. From the software/ folder, run the test
 	`pio test -f test_integration` 

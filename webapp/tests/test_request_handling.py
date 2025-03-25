@@ -25,32 +25,32 @@ class TestRequestHandling(unittest.TestCase):
 
     def test_0_post_upc(self):
         """Test adding a UPC code"""
-        response = self.client.post("/update", json={"user_id": "test_user", "upc_code": "123456789012", "action": "POST"})
+        response = self.client.post("/api/update", json={"user_id": "test_user", "upc_code": "123456789012", "action": "POST"})
         self.assertEqual(response.status_code, 200)
         user_data = response.json()["data"]
         self.assertTrue(self.code_in_scan(user_data, "123456789012"))
 
     def test_1_get_user_data(self):
         """Test retrieving UPCs for a user"""
-        response = self.client.get("/get/test_user")
+        response = self.client.get("/api/get/test_user")
         self.assertEqual(response.status_code, 200)
         print(response.json())
         self.assertTrue(self.code_in_scan(response.json(), "123456789012"))
 
     def test_2_delete_upc(self):
         """Test deleting a UPC code"""
-        response = self.client.post("/update", json={"user_id": "test_user", "upc_code": "123456789012", "action": "DELETE"})
+        response = self.client.post("/api/update", json={"user_id": "test_user", "upc_code": "123456789012", "action": "DELETE"})
         self.assertEqual(response.status_code, 200)
         self.assertFalse(self.code_in_scan(response.json()["data"], "123456789012"))
 
     def test_3_delete_nonexistent_upc(self):
         """Test deleting a UPC that does not exist"""
-        response = self.client.post("/update", json={"user_id": "test_user", "upc_code": "999999999999", "action": "DELETE"})
+        response = self.client.post("/api/update", json={"user_id": "test_user", "upc_code": "999999999999", "action": "DELETE"})
         self.assertEqual(response.status_code, 404)
 
     def test_4_invalid_action(self):
         """Test invalid action handling"""
-        response = self.client.post("/update", json={"user_id": "test_user", "upc_code": "111111111111", "action": "UPDATE"})
+        response = self.client.post("/api/update", json={"user_id": "test_user", "upc_code": "111111111111", "action": "UPDATE"})
         self.assertEqual(response.status_code, 400)
 
     def test_5_create_sample_user(self):
@@ -60,10 +60,17 @@ class TestRequestHandling(unittest.TestCase):
             num = ""
             for _ in range(12):
                 num += str(random.randint(0, 9))
-            response = self.client.post("/update", json={"user_id": "sample_user", "upc_code": num, "action": "POST"})
+            response = self.client.post("/api/update", json={"user_id": "sample_user", "upc_code": num, "action": "POST"})
             self.assertEqual(response.status_code, 200)
-        response = self.client.get("/get/sample_user")
+        response = self.client.get("/api/get/sample_user")
         self.assertEqual(len(response.json()["scans"]), 10)
+
+    def test_6_post_return_character(self):
+        """Test adding a UPC code with a return character"""
+        response = self.client.post("/api/update", json={"user_id": "test_user", "upc_code": "123456789012\r", "action": "POST"})
+        self.assertEqual(response.status_code, 200)
+        user_data = response.json()["data"]
+        self.assertTrue(self.code_in_scan(user_data, "123456789012"))
 
 if __name__ == "__main__":
     unittest.main()

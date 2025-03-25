@@ -25,7 +25,7 @@ class RequestData(BaseModel):
 @anyfridge_request_handler.post("/api/update")
 async def update_item(data: RequestData):
     user_id = data.user_id
-    upc_code = data.upc_code
+    upc_code = data.upc_code.strip()
     action = data.action.upper()
 
     if action not in ["POST", "DELETE"]:

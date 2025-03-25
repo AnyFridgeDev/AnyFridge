@@ -1,10 +1,19 @@
+---Team Members---
+Ethan Anderson (ema8@clemson.edu)
+Isaac Fletcher (ifletch@clemson.edu)
+Caden Allen (caden3@clemson.edu)
+
+[GitHub](https://github.com/AnyFridgeDev/AnyFridge)
+
+
 AnyFridge Testing Guide 
 
 Our tests are broken into two main categories
 1. Onboard Software
 2. Web App and Request Handling
 
-Below our instructions and explanations for each test for each of the two main categories.
+Below our instructions and explanations for each test for each of the
+two main categories.
 
 ---Onboard Software Tests---
 
@@ -13,7 +22,10 @@ It's typically used as an extension for VS Code.
 To run our tests, you can use the CLI version which can be installed here: https://platformio.org/install 
 
 --Test Barcode-- 
-The barcode test ensures that we are able to scan UPC barcodes accurately. The test starts by running a few unit test to ensure a good serial connection to the barcode scanner. The test then enters a loop where it constantly scans and prints any codes that are read to the serial monitor. 
+The barcode test ensures that we are able to scan UPC barcodes accurately.
+The test starts by running a few unit test to ensure a good serial connection to
+the barcode scanner. The test then enters a loop where it constantly scans and
+prints any codes that are read to the serial monitor. 
 
 Instructions:
 1. Connect the barcode scanner using a breadboard
@@ -26,8 +38,10 @@ Instructions:
 	`pio test -f test_barcode`
 
 --Test WiFi--
-The WiFi test connects to a hard-coded WiFi network and then checks that google.com can be pinged successfully.
-It also tests sending a GET request to a custom domain of af.ethananderson.dev where we have a server running to show what contents it receives. 
+The WiFi test connects to a hard-coded WiFi network and then checks that
+google.com can be pinged successfully.
+It also tests sending a GET request to a custom domain of af.ethananderson.dev
+where we have a server running to show what contents it receives. 
 This test allows to check the WiFi functionality of the board. 
 
 Instructions: 
@@ -39,8 +53,10 @@ Instructions:
 	`pio test -f test_wifi`
 
 --Test Access Point--
-During the setup phase of the device, the user needs to be able to connect to AnyFridge and give it network details to connect with.
-The access point test puts the ESP32 into AP mode and then checks if it got a IP address.
+During the setup phase of the device, the user needs to be able to connect to
+AnyFridge and give it network details to connect with.
+The access point test puts the ESP32 into AP mode and then checks if 
+it got a IP address.
 
 Instructions:
 1. Run the test

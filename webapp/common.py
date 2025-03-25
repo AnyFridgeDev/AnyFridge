@@ -12,10 +12,11 @@ def get_user_file(user_id):
 
 def load_user_data(user_id):
     filepath = get_user_file(user_id)
-    if os.path.exists(filepath):
-        with open(filepath, "r") as f:
-            return json.load(f)
-    return {}
+    if not os.path.exists(filepath):
+        open(filepath, "w").close()
+    
+    with open(filepath, "r") as f:
+        return json.load(f)
 
 def save_user_data(user_id, data):
     with open(get_user_file(user_id), "w") as f:

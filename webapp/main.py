@@ -12,10 +12,6 @@ app = FastAPI()
 # sets template directory
 templates = Jinja2Templates(directory="templates")
 
-def start_request_handler():
-    process = subprocess.Popen(["uvicorn", "request_handler:anyfridge_request_handler", "--host", "0.0.0.0", "--port", "5000"])
-    time.sleep(2)  # Give the server some time to start
-    return process
 
 @app.get("/")
 async def read_items(request: Request, user_id: str = Query(None)):

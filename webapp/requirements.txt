@@ -5,3 +5,4 @@ uvicorn
 httpx
 jinja2
 gradio[oauth]
+aiofiles

@@ -1,4 +1,5 @@
 ---Team Members---
+
 Ethan Anderson (ema8@clemson.edu)
 Isaac Fletcher (ifletch@clemson.edu)
 Caden Allen (caden3@clemson.edu)
@@ -6,7 +7,7 @@ Caden Allen (caden3@clemson.edu)
 [GitHub](https://github.com/AnyFridgeDev/AnyFridge)
 
 
-AnyFridge Testing Guide 
+----AnyFridge Testing Guide---- 
 
 Our tests are broken into two main categories
 1. Onboard Software
@@ -32,11 +33,13 @@ prints any codes that are read to the serial monitor.
 Instructions:
 1. Connect the barcode scanner using a breadboard
 	(ESP32 pin) = (Scanner pin)
-  	2 	= 	TX pin on scanner
-  	3 	= 	RX pin on scanner
-  	GND	= 	GND
-  	3.3V 	= 	3.3V
-2. Run the test (make sure you are in the `AnyFridge/Software` directory)
+  	2 			= 	TX pin on scanner
+  	3 			= 	RX pin on scanner
+  	GND			= 	GND
+  	3.3V 		= 	3.3V
+2. cd into the software directory
+	`cd software`
+3. Run the test
 	`pio test -f test_barcode`
 
 --Test WiFi--
@@ -48,11 +51,12 @@ where we have a server running to show what contents it receives.
 This test allows to check the WiFi functionality of the board. 
 
 Instructions: 
-1. Edit the WiFi name and network passwords
+1. cd into the software directory
+	`cd software`
+2. Edit the WiFi name and network passwords
 	`vim test_wifi/test_wifi.cpp`
 	Change `networkName` and `networkPswd` (smart phone hotspots work really well)
-
-2. Run the test (make sure you are in the `AnyFridge/Software` directory)
+3. Run the test
 	`pio test -f test_wifi`
 
 --Test Access Point--
@@ -60,21 +64,37 @@ Instructions:
 During the setup phase of the device, the user needs to be able to connect to
 AnyFridge and give it network details to connect with.
 The access point test puts the ESP32 into AP mode and then checks if 
-it got a IP address.
+it got an IP address.
 
 Instructions:
-1. Run the test
+1. cd into the software directory
+	`cd software`
+2. Run the test
 	`pio test -f test_ap` 
 
+If all the tests pass, it means the ESP32 went into AP mode and got an IP 
+address on it's own local network. 
 
----Web App and Request Handling Tests--
+---Web App and Request Handling Tests---
 
-Navigate to the `AnyFridge/WebApp` folder.
+Navigate to the `AnyFridge/webapp` folder.
+
+The webapp processes code scans sent from the AnyFridge device. 
+The webapp updates each user's list of scanned items based on the code 
+and user id sent by the AnyFridge device. 
+
+--Download Depdencies--
+
+Before running the webapp, we'll need to install some Python packages. 
+
+`cd webapp`
+`pip install -r requirements.txt `
 
 --Test Request Handling--
 
-The AnyFridge device will send requests to this server, so we wrote tests that
-emulate each of these requests to ensure our server handles them properly.
+The AnyFridge device will send requests to the request handling server,
+so we wrote tests that emulate each of these requests to ensure our server
+handles them properly.
 
 We check two main endpoints:
 1. /api/update
@@ -83,10 +103,14 @@ Should change the list of scanned codes for the provided user.
 2. /api/get/<userid>
 Should return a list of all scanned codes for the provided user.
 
-The test uses a FastAPI test client. 
+The test uses a FastAPI's built-in TestClient to simulate the request and
+their handling. 
 
 Instructions:
 1. Run the command: `python -m unittest tests/test_request_handling.py`
+
+If all the tests pass, it means the server succesfully updated and then 
+later collected the expected scan lists for each user. 
 
 --Local cURL + frontend check--
 
@@ -99,6 +123,10 @@ Instructions:
 	Put whatever you like for the userid.
 3. View the website and see if Frosted brown sugar cinnamon pastries 
 are shown in the list. 
+
+If everything worked, you'll also see a json file created inside of the 
+`AnyFridge/webapp/data` folder named <userid>.json. It should contain the
+upc code of the pastries. 
 
 ---Integration Test--
 Navigate to the `AnyFridge/` folder.
@@ -116,7 +144,18 @@ Instructions:
     Change `host` to point to designated machine on the same network that will
 	serve request handler and UI. You'll need to get the ip address of this machine
 	on your hotspot network. 
-2. Start the request handler on designated machine: `python3 webapp/request_handler.py`
-3. Start the gradio debugging UI on designated machine: `gradio webapp/ui.py`
-4. Run the test
+2. cd into the webapp directory: `cd webapp`
+3. Start the request handler on designated machine: `python request_handler.py`
+4. Open another terminal 
+4. Start the gradio debugging UI on designated machine: `gradio gradio_ui.py`
+5. Open another terminal 
+5. cd into the software directory: `cd software`
+4. Upload and run the code onto the AnyFridge device. 
 	`pio test -f test_integration` 
+5. Scan a UPC code with the barcode scanner
+6. Open the following page and type in "test_user" as the user_id. 
+	http://0.0.0.0:8080
+
+If everthing is working, when you scan a UPC code, you'll see the 
+code printed to the serial monitor and the item appear on the locally-hosted 
+website. 

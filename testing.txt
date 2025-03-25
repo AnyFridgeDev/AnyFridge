@@ -99,3 +99,24 @@ Instructions:
 	Put whatever you like for the userid.
 3. View the website and see if Frosted brown sugar cinnamon pastries 
 are shown in the list. 
+
+---Integration Test--
+Navigate to the `AnyFridge/` folder.
+
+--Test System Integration--
+A sample program has been provided to test the scanning, WiFi, and web request
+components of the device. It is to be used in conjunction with the 
+request handler and gradio test ui to confirm that codes are being appropriately 
+scanned and sent over the network.
+
+Instructions:
+1. Edit the WiFi name, network passwords, and host address
+	`vim software/test/test_integration/test_integration.cpp`
+	Change `networkName` and `networkPswd` (smart phone hotspots work really well)
+    Change `host` to point to designated machine on the same network that will
+	serve request handler and UI. You'll need to get the ip address of this machine
+	on your hotspot network. 
+2. Start the request handler on designated machine: `python3 webapp/request_handler.py`
+3. Start the gradio debugging UI on designated machine: `gradio webapp/ui.py`
+4. Run the test
+	`pio test -f test_integration` 

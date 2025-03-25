@@ -19,9 +19,11 @@ two main categories.
 
 For our onboard software, we use PlatformIO (PIO) to build and upload our code.
 It's typically used as an extension for VS Code. 
-To run our tests, you can use the CLI version which can be installed here: https://platformio.org/install 
+To run our tests, you can use the CLI version which can be 
+installed here: https://platformio.org/install 
 
 --Test Barcode-- 
+
 The barcode test ensures that we are able to scan UPC barcodes accurately.
 The test starts by running a few unit test to ensure a good serial connection to
 the barcode scanner. The test then enters a loop where it constantly scans and
@@ -38,6 +40,7 @@ Instructions:
 	`pio test -f test_barcode`
 
 --Test WiFi--
+
 The WiFi test connects to a hard-coded WiFi network and then checks that
 google.com can be pinged successfully.
 It also tests sending a GET request to a custom domain of af.ethananderson.dev
@@ -49,10 +52,11 @@ Instructions:
 	`vim test_wifi/test_wifi.cpp`
 	Change `networkName` and `networkPswd` (smart phone hotspots work really well)
 
-2. Run the test
+2. Run the test (make sure you are in the `AnyFridge/Software` directory)
 	`pio test -f test_wifi`
 
 --Test Access Point--
+
 During the setup phase of the device, the user needs to be able to connect to
 AnyFridge and give it network details to connect with.
 The access point test puts the ESP32 into AP mode and then checks if 
@@ -64,19 +68,34 @@ Instructions:
 
 
 ---Web App and Request Handling Tests--
+
 Navigate to the `AnyFridge/WebApp` folder.
 
 --Test Request Handling--
-The AnyFridge device will send requests to this server, so we wrote tests that emulate each of these requests to ensure our server handles them properly.
+
+The AnyFridge device will send requests to this server, so we wrote tests that
+emulate each of these requests to ensure our server handles them properly.
 
 We check two main endpoints:
-1. /update
+1. /api/update
 Should change the list of scanned codes for the provided user.
 
-2. /get/<userid>
+2. /api/get/<userid>
 Should return a list of all scanned codes for the provided user.
 
 The test uses a FastAPI test client. 
 
 Instructions:
 1. Run the command: `python -m unittest tests/test_request_handling.py`
+
+--Local cURL + frontend check--
+
+Another test involves hosting the webapp locally, sending a POST request to it 
+and then viewing the website to ensure the scan list was updated properly. 
+
+Instructions:
+1. cd into the `AnyFridge/webapp` directory 
+2. Run the curl command with `sh tests/local_curl_check.sh <userid>`
+	Put whatever you like for the userid.
+3. View the website and see if Frosted brown sugar cinnamon pastries 
+are shown in the list. 

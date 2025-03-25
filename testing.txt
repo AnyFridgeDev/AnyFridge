@@ -152,7 +152,7 @@ Instructions:
 5. cd into the software directory: `cd software`
 4. Upload and run the code onto the AnyFridge device. 
 	`pio test -f test_integration` 
-5. Scan a UPC code with the barcode scanner
+5. Scan a UPC code with the barcode scanner within 10 seconds 
 6. Open the following page and type in "test_user" as the user_id. 
 	http://0.0.0.0:8080
 

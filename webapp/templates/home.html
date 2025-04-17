@@ -15,19 +15,49 @@
                 <div class="description">
                     <p>
                         Date Added: {{ item.date_added }}<br>
+    
+                        {% if item.expiration_date == "None" %}
+                       <span style="color: red;"> Expiration Date Not Set: </span><br>
+                        <form action="/update-expiration-date" method="post" class="ui form" style="display: inline-block; margin-top: 5px;" onsubmit="formatDate(event, {{ loop.index0 }})">
+                            <input type="hidden" name="user_id" value="{{ user_id }}">
+                            <input type="hidden" name="index" value="{{ loop.index0 }}">
+                            <input type="date" id="expiration_date_{{ loop.index0 }}" name="expiration_date" value="{{ item.expiration_date }}" style="width: auto; font-size: 0.9em; padding: 2px;">
+                            <button class="ui tiny button" type="submit" style="padding: 5px 10px; font-size: 0.8em;">Update</button>
+                        </form>
+                        {% else %}
                         Expiration Date: {{ item.expiration_date }}<br>
+                        {% endif %}
                     </p>
                 </div>
                 <div class="extra">
-                    <div class="ui right floated negative labeled icon button">
-                        Delete
-                        <i class="minus icon"></i> 
+                    <div class="image" style="max-width: 200px; max-height: 200px; overflow: hidden;">
+                        <img src="{{ item.image_nutrition_url }}" alt="Nutrition facts of {{ item.name }}" style="width: 100%; height: auto;">
                     </div>
+                    <form action="/delete_item" method="post" class="ui form">
+                        <input type="hidden" name="user_id" value="{{ user_id }}">
+                        <input type="hidden" name="index" value="{{ loop.index0 }}">
+                        <button class="ui right floated negative labeled icon button" type="submit">
+                            Delete
+                            <i class="minus icon"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
+
+    <script>
+        function formatDate(event, index) {
+            const dateInput = document.getElementById(`expiration_date_${index}`);
+            const dateValue = dateInput.value; // Get the value in YYYY-MM-DD format
+            if (dateValue) {
+                const [year, month, day] = dateValue.split("-");
+                const formattedDate = `${month}/${day}/${year}`; // Convert to MM/DD/YYYY
+                dateInput.value = formattedDate; // Update the input value
+            }
+        }
+    </script>
 {% endblock %}
 
 

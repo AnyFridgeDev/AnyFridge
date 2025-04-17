@@ -34,7 +34,7 @@ void setup()
     pinMode(12, OUTPUT); // LED 3
 
     // Configure the button GPIO on pin 15
-    pinMode(15, INPUT); // Button GPIO
+    pinMode(15, INPUT_PULLDOWN); // Button pin
 
     delay(1000);
 }

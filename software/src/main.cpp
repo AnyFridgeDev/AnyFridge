@@ -52,7 +52,25 @@ const char *networkPswd = "password";
 const char *host        = "https://af.ethananderson.dev/api/update";
 const String user       = "isaac";
 
+// Wifi connection stuffs
+WiFiClientSecure *client = nullptr;
+HTTPClient http;
+uint32_t lastScanTime_ms = 0;
+#define DISCONNECT_TIMEOUT_MS 10000 // After 10 seconds of no activity, disconnect from the server
+
 enum mode {ADDITION, SUBTRACTION};
+
+bool connect_to_server(){
+    client = new WiFiClientSecure();
+    client->setCACert(rootCACertificate);
+    bool connected = http.begin(*client, host);
+    if (connected) {
+        Serial.println("Connected to server");
+    } else {
+        Serial.println("Failed to connect to server");
+    }
+    return connected;
+}
 
 void setup()
 {
@@ -64,7 +82,21 @@ void setup()
     }
 
     // Initialize scanner module
-    scanner.begin(barcodeSerial);
+    while (!scanner.begin(barcodeSerial)){
+        Serial.println("Scanner not detected, retrying...");
+        delay(1000);
+    }
+
+    // Flush barcode serial buffer
+    while (barcodeSerial.available())
+    {
+        barcodeSerial.read();
+    }
+
+    scanner.lightOff();
+    scanner.reticleOn();
+    scanner.disableAll2D();
+    scanner.startScan();
 
     // Intitialize WiFi connectivity
     WiFi.mode(WIFI_STA);
@@ -84,16 +116,12 @@ void setup()
 
 bool post_code(char *code, mode mode)
 {
-    WiFiClientSecure *client = new WiFiClientSecure;
-    HTTPClient http;
-
-    client->setCACert(rootCACertificate);
-
-    bool connected = http.begin(*client, host);
-
-    if (!connected) {
-        Serial.println("Connection to server failed");
-        return false;
+    if (!http.connected()){
+        Serial.println("Not connected to server, trying to connect...");
+        if (!connect_to_server()){
+            Serial.println("Failed to connect to server");
+            return false;
+        }
     }
 
     http.addHeader("Content-Type", "application/json");
@@ -116,24 +144,38 @@ bool post_code(char *code, mode mode)
 
     Serial.println();
 
-    // Close the connection
-    http.end();
-
     return true;
 }
 
 void loop()
 { 
-    scanner.startScan();
-    delay(500);
-    if (scanner.readBarcode(scanBuffer, BUFFER_LEN))
+
+    // Current bytes on serial buffer
+    size_t bytesAvailable = barcodeSerial.available();
+    
+    if (bytesAvailable >= 12 && scanner.readBarcode(scanBuffer, BUFFER_LEN))
     {
+        // // Check if we need to disconnect from the server
+        // if (client && http.connected() && (millis() - lastScanTime_ms) > DISCONNECT_TIMEOUT_MS)
+        // {
+        //     Serial.println("Disconnecting from server");
+        //     http.end();
+        //     delete client;
+        //     client = nullptr;
+        // }
+
         Serial.print("Code found: ");
         Serial.print(String(scanBuffer));
         Serial.println();
         post_code(scanBuffer, ADDITION);
+        lastScanTime_ms = millis();
     }
-    scanner.stopScan();
-  
-    delay(500);
+   
+
+
+    // Flush serial buffer
+    // while (barcodeSerial.available())
+    // {
+    //     barcodeSerial.read();
+    // }
 }

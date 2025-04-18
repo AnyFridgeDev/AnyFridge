@@ -22,10 +22,10 @@ class RequestData(BaseModel):
 
 
 
-@anyfridge_request_handler.post("/update")
+@anyfridge_request_handler.post("/api/update")
 async def update_item(data: RequestData):
     user_id = data.user_id
-    upc_code = data.upc_code
+    upc_code = data.upc_code.strip()
     action = data.action.upper()
 
     if action not in ["POST", "DELETE"]:
@@ -55,7 +55,7 @@ async def update_item(data: RequestData):
     save_user_data(user_id, user_data)
     return {"message": "Success", "data": user_data}
 
-@anyfridge_request_handler.get("/get/{user_id}")
+@anyfridge_request_handler.get("/api/get/{user_id}")
 async def get_items(user_id: str):
     user_data = load_user_data(user_id)
     return user_data

@@ -14,6 +14,7 @@
 #include <WiFiClientSecure.h>
 #include <NetWizard.h>
 #include <WebServer.h>
+#include <Preferences.h>
 
 // This is a Google Trust Services cert, the root Certificate Authority that
 // signed the server certificate for the demo server https://jigsaw.w3.org in this
@@ -55,12 +56,15 @@ char scanBuffer[BUFFER_LEN] = {0};
 const char *host        = "https://af.ethananderson.dev/api/update";
 String user             = "";
 
+// -- Preferences for storing user ID --
+Preferences prefs;
+
 // --- NetWizard Configuration ---
 WebServer server(80);
 NetWizard NW(&server);
 NetWizardParameter nw_header(&NW, NW_HEADER, "User Configuration");
 NetWizardParameter nw_divider1(&NW, NW_DIVIDER);
-NetWizardParameter nw_input(&NW, NW_INPUT, "User ID", "", "isaac"); 
+NetWizardParameter nw_user_id_input(&NW, NW_INPUT, "User ID", "", "isaac"); 
 
 // --- Network Communication ---
 WiFiClientSecure *client = nullptr;
@@ -141,6 +145,19 @@ void setup()
 
     digitalWrite(BLUE, HIGH);
 
+    // Try to load the current user ID from preferences
+    prefs.begin("anyfridge", true);
+    user = prefs.getString("user_id", "");
+    prefs.end();
+
+    // Check if we actually got a user ID
+    if (user.length() == 0) {
+        Serial.println("[-] No saved user ID found, setting to empty string");
+    } else {
+        Serial.print("[+] Saved User ID found: ");
+        Serial.println(user);
+    }
+
     // Resets NetWizard to default state
     // NW.reset();
 
@@ -150,8 +167,17 @@ void setup()
 
     Serial.println("[+] Connected to WiFi!");
 
-    // If we are not providing a user, accept the user provided by NetWizard
-    if (user.length() == 0) user = nw_input.getValueStr();
+    // If the netwizard provides a new user ID, save it
+    if (nw_user_id_input.getValueStr() != "") {
+        user = nw_user_id_input.getValueStr();
+        Serial.print("[+] New User ID found from netwizard: ");
+        Serial.println(user);
+        prefs.begin("anyfridge", false);
+        prefs.putString("user_id", user);
+        prefs.end();
+    } else {
+        Serial.println("[-] No new User ID found");
+    }
 
     digitalWrite(BLUE, LOW);
     digitalWrite(GREEN, HIGH);

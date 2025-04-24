@@ -137,7 +137,10 @@ void setup()
     scanner.lightOff();
     scanner.disableAll2D();
     scanner.reticleOn();
-    scanner.startScan();
+    scanner.stopScan();
+    
+    scanner.enableContinuousRead(1);
+    scanner.enableMotionSense(50U);
 
     digitalWrite(BLUE, HIGH);
 

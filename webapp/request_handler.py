@@ -10,6 +10,7 @@ import uvicorn
 import threading
 from typing import List
 import datetime 
+import logging 
 
 from common import load_user_data, save_user_data
 
@@ -27,6 +28,8 @@ async def update_item(data: RequestData):
     user_id = data.user_id
     upc_code = data.upc_code.strip()
     action = data.action.upper()
+
+    print(f"Update Item: {user_id}, UPC: {upc_code}, Action: {action}")
 
     if action not in ["POST", "DELETE"]:
         raise HTTPException(status_code=400, detail="Invalid action")
@@ -57,6 +60,7 @@ async def update_item(data: RequestData):
 
 @anyfridge_request_handler.get("/api/get/{user_id}")
 async def get_items(user_id: str):
+    print(f"Get Items for User: {user_id}")
     user_data = load_user_data(user_id)
     return user_data
 

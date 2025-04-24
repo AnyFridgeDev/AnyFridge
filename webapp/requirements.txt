@@ -6,3 +6,4 @@ httpx
 jinja2
 gradio[oauth]
 aiofiles
+openfoodfacts==2.5.0

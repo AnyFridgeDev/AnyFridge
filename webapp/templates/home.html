@@ -30,27 +30,25 @@
                             expirationDate = new Date("{{ item.expiration_date }}");
                             currentDate = new Date();
 
+                            itemHeader = document.getElementById("item_{{ loop.index0 }}");
+                            expirationHeader = document.getElementById("expiration_date_{{ loop.index0 }}");
+
                             if (expirationDate < currentDate) {
-                                itemHeader = document.getElementById("item_{{ loop.index0 }}");
                                 itemHeader.style.color = "red";
                                 itemHeader.innerHTML += " (This item is expired)";
-
-                                expirationHeader = document.getElementById("expiration_date_{{ loop.index0 }}");
                                 expirationHeader.style.color = "red";
+                            } else {
+                                itemHeader.style.color = "";
+                                itemHeader.innerHTML = itemHeader.innerHTML.replace(" (This item is expired)", "");
+                                expirationHeader.style.color = "";
                             }
                         </script>
                         {% endif %}
                     </p>
                 </div>
                 <div class="extra">
-<<<<<<< HEAD
-                    <div class="ui right floated negative labeled icon button" onclick="deleteItem('{{ user_id }}', '{{ item.upc_code }}', '{{ loop.index0 }}')">
-                        Delete
-                        <i class="minus icon"></i> 
-=======
                     <div class="image" style="max-width: 200px; max-height: 200px; overflow: hidden;">
                         <img src="{{ item.image_nutrition_url }}" alt="Nutrition facts of {{ item.name }}" style="width: 100%; height: auto;">
->>>>>>> 8e5453dbb63ba04946356a9a78be1a16f689fc7e
                     </div>
                     <form action="/delete_item" method="post" class="ui form">
                         <input type="hidden" name="user_id" value="{{ user_id }}">
@@ -66,40 +64,6 @@
         {% endfor %}
     </div>
 
-<<<<<<< HEAD
-
-
-
-    <script>
-        // Define the deleteItem function globally
-        async function deleteItem(userId, code, index) {
-            const formData = new FormData();
-            formData.append("user_id", userId);
-            formData.append("code", code);
-            formData.append("action", "DELETE");
-            formData.append("index", index);
-    
-            const response = await fetch("http://127.0.0.1:5000/api/update", { // Updated port to 5000
-                method: "POST",
-                body: formData,
-            });
-            
-            if (response.ok) {
-                alert("Item deleted successfully!");
-                location.reload();
-            } else {
-                const error = await response.json();
-                alert(`Error: ${error.error}`);
-            }
-        }
-    
-        document.addEventListener("DOMContentLoaded", () => {
-            // Additional DOM-related logic can go here if needed
-        });
-    </script>
-
-    
-=======
     <script>
         function formatDate(event, index) {
             const dateInput = document.getElementById(`expiration_date_${index}`);
@@ -110,7 +74,6 @@
             dateInput.value = formattedDate; // Update the input value
         }
     </script>
->>>>>>> 8e5453dbb63ba04946356a9a78be1a16f689fc7e
 {% endblock %}
 
 

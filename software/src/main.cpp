@@ -8,13 +8,13 @@
   - NetWizard example from https://docs.netwizard.pro/docs/intro/example
 */
 
-#include <Arduino.h>
-#include <ArduinoJson.h>
-#include <HTTPClient.h>
-#include <WiFiClientSecure.h>
-#include <NetWizard.h>
-#include <WebServer.h>
-#include <Preferences.h>
+    #include <Arduino.h>
+    #include <ArduinoJson.h>
+    #include <HTTPClient.h>
+    #include <WiFiClientSecure.h>
+    #include <NetWizard.h>
+    #include <WebServer.h>
+    #include <Preferences.h>
 
 // This is a Google Trust Services cert, the root Certificate Authority that
 // signed the server certificate for the demo server https://jigsaw.w3.org in this
@@ -147,6 +147,8 @@ void setup()
     scanner.enableMotionSense(50U);
 
     digitalWrite(BLUE, HIGH);
+    digitalWrite(GREEN, LOW);
+    digitalWrite(RED, LOW);
 
     // Try to load the current user ID from preferences
     prefs.begin("anyfridge", true);
@@ -230,16 +232,6 @@ void loop()
 { 
     
     NW.loop();
-    
-    // Check if we need to disconnect from the server
-    if (client && https.connected() && (millis() - lastScanTime_ms) > DISCONNECT_TIMEOUT_MS)
-    {
-        Serial.println("[-] Disconnecting from server");
-        https.end();
-        
-        delete client;
-        client = nullptr;
-    }
 
     if (scanner.readBarcode(scanBuffer, BUFFER_LEN))
     {

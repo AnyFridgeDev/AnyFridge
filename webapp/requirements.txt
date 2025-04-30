@@ -6,3 +6,6 @@ httpx
 jinja2
 gradio[oauth]
 aiofiles
+openfoodfacts==2.5.0
+python-multipart
+markupsafe==2.0.1

@@ -1,12 +1,20 @@
 /*
-  By: AnyFridge Team (POST example referenced at https://github.com/espressif/arduino-esp32/blob/master/libraries/HTTPClient/examples/BasicHttpsClient/BasicHttpsClient.ino)
+  By: AnyFridge Team
   Term: Spring 2025 
+
+  References:
+  - POST example from https://github.com/espressif/arduino-esp32/blob/master/libraries/HTTPClient/examples/BasicHttpsClient/BasicHttpsClient.ino
+  - ISR from https://lastminuteengineers.com/handling-esp32-gpio-interrupts-tutorial/
+  - NetWizard example from https://docs.netwizard.pro/docs/intro/example
 */
 
 #include <Arduino.h>
 #include <ArduinoJson.h>
 #include <HTTPClient.h>
-#include <WiFi.h>
+#include <WiFiClientSecure.h>
+#include <NetWizard.h>
+#include <WebServer.h>
+#include <Preferences.h>
 
 // This is a Google Trust Services cert, the root Certificate Authority that
 // signed the server certificate for the demo server https://jigsaw.w3.org in this
@@ -42,28 +50,64 @@ HardwareSerial barcodeSerial(1); // UART BUS 1
 DE2120 scanner;
 
 #define BUFFER_LEN 40
-char scanBuffer[BUFFER_LEN];
+char scanBuffer[BUFFER_LEN] = {0};
 
-// --- Replace these with your network credentials ---
-const char *networkName = "iPhone";
-const char *networkPswd = "password";
-
-// --- Domain/Port for AnyFridge endpoint ---
+// --- Configuration for AnyFridge endpoint ---
 const char *host        = "https://af.ethananderson.dev/api/update";
-const String user       = "isaac";
+String user             = "";
 
-// Wifi connection stuffs
+// -- Preferences for storing user ID --
+Preferences prefs;
+
+// --- NetWizard Configuration ---
+WebServer server(80);
+NetWizard NW(&server);
+NetWizardParameter nw_header(&NW, NW_HEADER, "User Configuration");
+NetWizardParameter nw_divider1(&NW, NW_DIVIDER);
+NetWizardParameter nw_user_id_input(&NW, NW_INPUT, "User ID", "", "isaac"); 
+
+// --- Network Communication ---
 WiFiClientSecure *client = nullptr;
-HTTPClient http;
+HTTPClient https;
 uint32_t lastScanTime_ms = 0;
 #define DISCONNECT_TIMEOUT_MS 10000 // After 10 seconds of no activity, disconnect from the server
 
 enum mode {ADDITION, SUBTRACTION};
+mode current_mode = ADDITION;
+
+#define RED 33
+#define GREEN 27
+#define BLUE 12
+#define BUTTON 15
+
+unsigned long button_time = 0;
+unsigned long last_button_time = 0;
+
+void IRAM_ATTR button_isr() {
+
+    button_time = millis();
+
+    if (button_time - last_button_time > 250) {
+        
+        // Swap the current mode
+        if (current_mode == ADDITION) {
+            current_mode = SUBTRACTION;
+            digitalWrite(RED, HIGH);
+            digitalWrite(GREEN, LOW);
+        } else {
+            current_mode = ADDITION;
+            digitalWrite(RED, LOW);
+            digitalWrite(GREEN, HIGH);
+        }
+        last_button_time = button_time;
+    }
+    
+}
 
 bool connect_to_server(){
     client = new WiFiClientSecure();
     client->setCACert(rootCACertificate);
-    bool connected = http.begin(*client, host);
+    bool connected = https.begin(*client, host);
     if (connected) {
         Serial.println("Connected to server");
     } else {
@@ -81,56 +125,91 @@ void setup()
         delay(100); // Wait for native USB
     }
 
+    // Configure LEDS
+    pinMode(RED, OUTPUT); // LED 1
+    pinMode(GREEN, OUTPUT); // LED 2
+    pinMode(BLUE, OUTPUT); // LED 3
+
     // Initialize scanner module
     while (!scanner.begin(barcodeSerial)){
-        Serial.println("Scanner not detected, retrying...");
+        Serial.println("[-] Scanner not detected, retrying...");
         delay(1000);
     }
 
-    // Flush barcode serial buffer
-    while (barcodeSerial.available())
-    {
-        barcodeSerial.read();
-    }
+    Serial.println("[+] Scanner online!");
 
     scanner.lightOff();
-    scanner.reticleOn();
     scanner.disableAll2D();
-    scanner.startScan();
+    scanner.reticleOn();
+    scanner.stopScan();
+    
+    scanner.enableContinuousRead(1);
+    scanner.enableMotionSense(50U);
 
-    // Intitialize WiFi connectivity
-    WiFi.mode(WIFI_STA);
-    WiFi.begin(networkName, networkPswd);
-  
-    // Wait until successful connection
-    unsigned long startAttemptTime = millis();
-    while (WiFi.status() != WL_CONNECTED)
-    {
-      delay(250);
+    digitalWrite(BLUE, HIGH);
+
+    // Try to load the current user ID from preferences
+    prefs.begin("anyfridge", true);
+    user = prefs.getString("user_id", "");
+    prefs.end();
+
+    // Check if we actually got a user ID
+    if (user.length() == 0) {
+        Serial.println("[-] No saved user ID found, setting to empty string");
+    } else {
+        Serial.print("[+] Saved User ID found: ");
+        Serial.println(user);
     }
 
-    // Assigned IP Address
-    Serial.println(WiFi.localIP());
+    // Resets NetWizard to default state
+    // NW.reset();
+
+    NW.setConnectTimeout(10000);
+    NW.setStrategy(NetWizardStrategy::BLOCKING);
+    NW.autoConnect("AnyFridge", "");
+
+    Serial.println("[+] Connected to WiFi!");
+
+    // If the netwizard provides a new user ID, save it
+    if (nw_user_id_input.getValueStr() != "") {
+        user = nw_user_id_input.getValueStr();
+        Serial.print("[+] New User ID found from netwizard: ");
+        Serial.println(user);
+        prefs.begin("anyfridge", false);
+        prefs.putString("user_id", user);
+        prefs.end();
+    } else {
+        Serial.println("[-] No new User ID found");
+    }
+
+    digitalWrite(BLUE, LOW);
+    digitalWrite(GREEN, HIGH);
+
+    pinMode(BUTTON, INPUT_PULLDOWN);
+    attachInterrupt(BUTTON, button_isr, FALLING);
+
+    Serial.println("[+] AnyFridge ready!");
 
 }
 
-bool post_code(char *code, mode mode)
+bool post_code(char *code)
 {
-    if (!http.connected()){
-        Serial.println("Not connected to server, trying to connect...");
+    if (!https.connected()){
+        Serial.println("[-] Not connected to server, trying to connect...");
         if (!connect_to_server()){
-            Serial.println("Failed to connect to server");
+            Serial.println("[-] Failed to connect to server");
             return false;
         }
     }
 
-    http.addHeader("Content-Type", "application/json");
+    https.addHeader("Content-Type", "application/json");
 
     String payload;
     String action;
 
-    if (mode == ADDITION) action = "POST";
-    else action = "DELETE";
+    noInterrupts();
+    current_mode == ADDITION ? action = "POST" : action = "DELETE";
+    interrupts();
 
     JsonDocument doc;
     doc["upc_code"] = String(code);
@@ -138,7 +217,7 @@ bool post_code(char *code, mode mode)
     doc["action"] = action;
     serializeJson(doc, payload);
 
-    int httpResponseCode = http.POST(payload);
+    int httpResponseCode = https.POST(payload);
     
     Serial.print(httpResponseCode);
 
@@ -149,33 +228,33 @@ bool post_code(char *code, mode mode)
 
 void loop()
 { 
-
-    // Current bytes on serial buffer
-    size_t bytesAvailable = barcodeSerial.available();
     
-    if (bytesAvailable >= 12 && scanner.readBarcode(scanBuffer, BUFFER_LEN))
+    NW.loop();
+    
+    // Check if we need to disconnect from the server
+    if (client && https.connected() && (millis() - lastScanTime_ms) > DISCONNECT_TIMEOUT_MS)
     {
-        // // Check if we need to disconnect from the server
-        // if (client && http.connected() && (millis() - lastScanTime_ms) > DISCONNECT_TIMEOUT_MS)
-        // {
-        //     Serial.println("Disconnecting from server");
-        //     http.end();
-        //     delete client;
-        //     client = nullptr;
-        // }
-
-        Serial.print("Code found: ");
-        Serial.print(String(scanBuffer));
-        Serial.println();
-        post_code(scanBuffer, ADDITION);
-        lastScanTime_ms = millis();
+        Serial.println("[-] Disconnecting from server");
+        https.end();
+        
+        delete client;
+        client = nullptr;
     }
-   
 
+    if (scanner.readBarcode(scanBuffer, BUFFER_LEN))
+    {
 
-    // Flush serial buffer
-    // while (barcodeSerial.available())
-    // {
-    //     barcodeSerial.read();
-    // }
+        Serial.print("[+] Code found: ");
+        Serial.println(String(scanBuffer));
+        
+        post_code(scanBuffer);
+
+        // Flush scanBuffer and Serial line
+        memset(scanBuffer, 0, BUFFER_LEN);
+        while (barcodeSerial.available()) barcodeSerial.read();
+
+        lastScanTime_ms = millis();
+
+    }
+
 }
